@@ -60,14 +60,14 @@
 							<p class="text-center text-muted">Para registrarte como nuevo usuario, favor de comunicarse con el administrador del sitio. </p>
 							<hr>
 							
-							<form>
+							<form  action="./controladores/seguridad/login.php" role="form" method="post">
 								<div class="top-margin">
 									<label>Usuario <span class="text-danger">*</span></label>
-									<input type="text" class="form-control">
+									<input name="login" type="text" class="form-control">
 								</div>
 								<div class="top-margin">
 									<label>Contraseña <span class="text-danger">*</span></label>
-									<input type="password" class="form-control">
+									<input name="password" type="password" class="form-control">
 								</div>
 
 								<hr>
@@ -77,7 +77,7 @@
 										<b><a href="">Olvido su contraseña?</a></b>
 									</div>
 									<div class="col-lg-4 text-right">
-										<a href="menuAdmin.html">
+										
 										<button class="btn btn-action" type="submit">Entrar</button>
 									</a>
 									</div>
