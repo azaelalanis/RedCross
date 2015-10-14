@@ -4,9 +4,11 @@
 	
 	//Variables inicializadas
 	if(isset($_POST["login"])){
-		$usuario=$_POST["login"];
+		$tipo = strtolower(substr($_POST["login"], 0, 1));
+		$usuario=substr($_POST["login"], 1);
 	}else{
 		$usuario="";
+		$tipo = "";
 	}
 	
 	if(isset($_POST["password"])){
@@ -14,44 +16,55 @@
 	}else{
 		$clave="";
 	}
-	echo $clave + $usuario;
 	$password="";
-	$tipo="";
 	$nombre="";
 	
+	if($tipo == "a"){
+		$tabla = "alumno";
+	}
+	elseif ($tipo == "m"){
+		$tabla = "maestro";
+	}
+	else{
+		$tabla = "administrador";
+	}
 	
 	
-	$sql="select * from usuario where Nomina='".$usuario."'";
+	$sql="select * from " . $tabla . " where id_" . $tabla . "= $usuario";
 
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_array($result)){
-		$tipo=$row['Tipo'];
-		$password=$row['Password'];
-		$nombre=$row['Nombre'];
-	}	
+		$password=$row['contra_' . $tabla];
+		$nombre=$row[$tipo . '_nombre'];
 
+	}	
 	
 	//Si la clave ingresada es igual a la de la base de datos deja ingresar
-	if($clave==$password && $usuario!="")
+	if(password_verify($clave, $password) && $usuario!="")
 	{
 		session_start();
 		// store session data
-		$_SESSION['nomina']=$usuario;
+		$_SESSION['matricula']=$usuario;
 		$_SESSION['tipo']=$tipo;
         $_SESSION['nombre']=$nombre;
-		if($tipo){
+		if($tipo == "a"){
 			echo "<script language=\"javascript\">
-					window.location.href = \"pantallaIndexStaff.php\"
+					window.location.href = \"../../menuAlumno.html\"
 				</script>";
-		}else{
+		}elseif ( $tipo == "d"){
 			echo "<script language=\"javascript\">
-					window.location.href = \"pantallaIndexAdmin.php\"
+					window.location.href = \"../../menuAdmin.html\"
+				</script>";
+		}
+		else{
+			echo "<script language=\"javascript\">
+					window.location.href = \"../../menuMaestro.html\"
 				</script>";
 		}
 	}else{
-		echo "<script language=\"javascript\">
+			echo "<script language=\"javascript\">
 				alert(\"Usuario o clave incorrectas\");
-				window.location.href = \"index.html\"
-			</script>";
+				window.location.href = \"../../index.html\"
+				</script>";
 	}
 ?>
