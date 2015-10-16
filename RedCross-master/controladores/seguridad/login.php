@@ -29,9 +29,8 @@
 		$tabla = "administrador";
 	}
 	
-	
+	$usuario = mysql_escape_string($usuario);
 	$sql="select * from " . $tabla . " where id_" . $tabla . "= $usuario";
-
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_array($result)){
 		$password=$row['contra_' . $tabla];
@@ -49,22 +48,22 @@
         $_SESSION['nombre']=$nombre;
 		if($tipo == "a"){
 			echo "<script language=\"javascript\">
-					window.location.href = \"../../menuAlumno.html\"
+					window.location.href = \"../../vistas/menus/menuAlumno.php\"
 				</script>";
 		}elseif ( $tipo == "d"){
 			echo "<script language=\"javascript\">
-					window.location.href = \"../../menuAdmin.html\"
+					window.location.href = \"../../vistas/menus/menuAdmin.php\"
 				</script>";
 		}
 		else{
 			echo "<script language=\"javascript\">
-					window.location.href = \"../../menuMaestro.html\"
+					window.location.href = \"../../vistas/menus/menuMaestro.php\"
 				</script>";
 		}
 	}else{
 			echo "<script language=\"javascript\">
 				alert(\"Usuario o clave incorrectas\");
-				window.location.href = \"../../index.html\"
+				window.location.href = \"../../vistas/index.php\"
 				</script>";
 	}
 ?>

@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionAdmin.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +10,7 @@
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
 	
-	<title>Sign in</title>
+	<title>Men&uacute;</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
 	
@@ -35,7 +39,10 @@
 				<a class="navbar-brand" href="index.html"><img src="assets/images/cruzroja.png" alt="Progressus HTML5 template"></a>
 			</div>
 			<div class="navbar-collapse collapse">
-				
+				<ul class="nav navbar-nav pull-right">
+					<li><a href="#">Inicio</a></li>
+					<li class="active"><a class="btn" href="../../controladores/seguridad/cerrarSesion.php">Salir</a></li>
+				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
 	</div> 
@@ -45,55 +52,63 @@
 
 	<!-- container -->
 	<div class="container">
+
 		<div class="row">
 			
 			<!-- Article main content -->
-			<article class="col-xs-12 maincontent">
+			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Ingresa a tu cuenta</h1>
+					<h1 class="page-title">Men&uacute;</h1>
 				</header>
-				
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<h3 class="thin text-center">Sign in</h3>
-							<p class="text-center text-muted">Para registrarte como nuevo usuario, favor de comunicarse con el administrador del sitio. </p>
-							<hr>
-							
-							<form  action="./controladores/seguridad/login.php" role="form" method="post">
-								<div class="top-margin">
-									<label>Usuario <span class="text-danger">*</span></label>
-									<input name="login" type="text" class="form-control">
-								</div>
-								<div class="top-margin">
-									<label>Contraseña <span class="text-danger">*</span></label>
-									<input name="password" type="password" class="form-control">
-								</div>
-
-								<hr>
-
-								<div class="row">
-									<div class="col-lg-8">
-										<b><a href="">Olvido su contraseña?</a></b>
-									</div>
-									<div class="col-lg-4 text-right">
-										
-										<button class="btn btn-action" type="submit">Entrar</button>
-									</a>
-									</div>
-								</div>
-							</form>
-						</div>
-					</div>
-
+				<div>
+					<a href="../inscripcion/inscripcionAlumno.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir alumnos">
+					</a>
 				</div>
-				
+				<br>
+				<div>
+					<a href="../inscripcion/inscripcionMaestro.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir maestros">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="../inscripcion/inscripcionCurso.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir cursos">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="../inscripcion/inscripcionAdmin.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir administradores">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="menuReportes.php">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reportes">
+					</a>
+				</div>
+				<br>
 			</article>
 			<!-- /Article -->
+			
+			<!-- Sidebar -->
+			<aside class="col-sm-3 sidebar sidebar-right">
+
+				<div class="widget">
+					<h4>Bienvenido</h4>
+					<address>
+						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
+					</address>
+				</div>
+
+			</aside>
+			<!-- /Sidebar -->
 
 		</div>
 	</div>	<!-- /container -->
-	
+
 
 	<footer id="footer" class="top-space">
 
@@ -157,8 +172,8 @@
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
-		
+	</footer>
+
 
 
 
@@ -169,5 +184,11 @@
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
+	
+	<!-- Google Maps -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
+	<script src="assets/js/google-map.js"></script>
+	
+
 </body>
 </html>

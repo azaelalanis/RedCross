@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionMaestro.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +41,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li><a href="#">Inicio</a></li>
-					<li class="active"><a class="btn" href="#">Salir</a></li>
+					<li class="active"><a class="btn" href="../../controladores/seguridad/cerrarSesion.php">Salir</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -54,47 +58,23 @@
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Generador de reportes</h1>
+					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos en cursos">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos que estoy impartiendo">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de asistencias">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Asignar calificaciones finales">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de calificaciones finales de alumnos por curso">
-					</a>
-				</div>
-				<br>
-				<div>
-					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos por semestre">
-					</a>
-				</div>
-				<br>
-				<div>
-					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los alumnos inscritos en la escuela">
-					</a>
-				</div>
-				<br>
-				<div>
-					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los maestros">
-					</a>
-				</div>
-				<br>
-				<div>
-					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los administradores">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Tomar lista">
 					</a>
 				</div>
 				<br>
@@ -107,7 +87,7 @@
 				<div class="widget">
 					<h4>Bienvenido</h4>
 					<address>
-						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
+						Usted ha ingresado como maestro, por favor seleccione la opci&oacute;n que requiera.
 					</address>
 				</div>
 

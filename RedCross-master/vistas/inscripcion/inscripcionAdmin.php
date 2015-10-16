@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionAdmin.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionAlumno.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,7 +41,7 @@
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
 					<li><a href="#">Inicio</a></li>
-					<li class="active"><a class="btn" href="#">Salir</a></li>
+					<li class="active"><a class="btn" href="../../controladores/seguridad/cerrarSesion.php">Salir</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
@@ -57,13 +61,13 @@
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-					<a href="tablaCalificaciones.html">
+					<a href="../tablas/tablaCalificaciones.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Ver mis calificaciones">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="tablaHorario.html">
+					<a href="../tablas/tablaHorario.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Ver mi horario">
 					</a>
 				</div>

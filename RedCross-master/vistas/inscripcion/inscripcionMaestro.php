@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionAdmin.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,7 +53,7 @@
 
 	<!-- Intro -->
 	<div class="container text-center">
-		<h2 class="thin">Inscripci&oacute;n de nuevo Curso al Sistema</h2>
+		<h2 class="thin">Inscripci&oacute;n de Maestro al Sistema</h2>
 		<br>
 	</div>
 	<!-- /Intro-->
@@ -60,30 +64,65 @@
 			<div class="row">
 				<!-- CURP del alumno -->
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Semestre</label>
+					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Semestre" >
+						<input type="text" class="form-control" id="" name="" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Nombre</label>
+					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre del curso" >
+						<input type="text" class="form-control" id="" name="" placeholder="Apellido Paterno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="textArea" class="col-lg-2 control-label">Objetivo del curso</label>
+					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<input type="text" class="form-control" id="" name="" placeholder="Apellido Materno" >
 					</div>
 				</div>
-				<br><br><br><br>
+				<br><br>
 				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Unidades</label>
+					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Unidades del curso" >
+						<input type="date" class="form-control" id="" name="" placeholder="dd/mm/aaaa" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">CURP</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="" placeholder="CURP" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Enfermedades</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="" placeholder="Liste enfermedades que padece" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Alergias</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="" placeholder="Liste alergias que padece" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="" placeholder="Tel&eacute;fono" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Email</label>
+					<div class="col-lg-10">
+						<input type="email" class="form-control" id="" name="" placeholder="Email" >
 					</div>
 				</div>
 			</div> <!-- /row  -->

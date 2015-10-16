@@ -1,3 +1,7 @@
+<?php
+include "../../includes/sessionAdmin.php";
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,23 +58,47 @@
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
-					<h1 class="page-title">Men&uacute;</h1>
+					<h1 class="page-title">Generador de reportes</h1>
 				</header>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos que estoy impartiendo">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos en cursos">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Asignar calificaciones finales">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de asistencias">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="#">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Tomar lista">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de calificaciones finales de alumnos por curso">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="#">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos por semestre">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="#">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los alumnos inscritos en la escuela">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="#">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los maestros">
+					</a>
+				</div>
+				<br>
+				<div>
+					<a href="#">
+					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los administradores">
 					</a>
 				</div>
 				<br>
@@ -83,7 +111,7 @@
 				<div class="widget">
 					<h4>Bienvenido</h4>
 					<address>
-						Usted ha ingresado como maestro, por favor seleccione la opci&oacute;n que requiera.
+						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
 					</address>
 				</div>
 
