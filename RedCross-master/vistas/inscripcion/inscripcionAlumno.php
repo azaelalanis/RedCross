@@ -66,49 +66,49 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre" >
+						<input type="text" class="form-control" id="" name="nombres" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Apellido Paterno" >
+						<input type="text" class="form-control" id="" name="APaterno" placeholder="Apellido Paterno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Apellido Materno" >
+						<input type="text" class="form-control" id="" name="AMaterno" placeholder="Apellido Materno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="" name="" placeholder="dd/mm/aaaa" >
+						<input type="date" class="form-control" id="" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Lugar de Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Ciudad" >
+						<input type="text" class="form-control" id="" name="LugarNacimiento" placeholder="Ciudad" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nacionalidad</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Mexicano" >
+						<input type="text" class="form-control" id="" name="Nacionalidad" placeholder="Mexicano" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Sexo</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
+						<select class="form-control" id="select" name="Sexo" >
 							<option>Masculino</option>
 							<option>Femenino</option>
 						</select>
@@ -118,7 +118,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Estado Civil</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
+						<select class="form-control" id="select" name="EstadoCivil">
 							<option>Soltero</option>
 							<option>Casado</option>
 							<option>Divorciado</option>
@@ -130,7 +130,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Grupo Sangu&iacute;neo</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
+						<select class="form-control" id="select" name="GrupoSanguineo">
 							<option>O-</option>
 							<option>O+</option>
 							<option>A-</option>
@@ -146,21 +146,21 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">RH</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="RH" >
+						<input type="text" class="form-control" id="" name="RH" placeholder="RH" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">CURP</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="CURP" >
+						<input type="text" class="form-control" id="" name="CURP" placeholder="CURP" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Cuenta con servicio m&eacute;dico?</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
+						<select class="form-control" id="select" name="ServicioMedico" >
 							<option>S&iacute;</option>
 							<option>No</option>
 						</select>
@@ -170,7 +170,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label">Actualmente est&aacute; laborando?</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
+						<select class="form-control" id="select" name="ActualmenteLaborando">
 							<option>S&iacute;</option>
 							<option>No</option>
 						</select>
@@ -180,203 +180,203 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Enfermedades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Liste enfermedades que padece" >
+						<input type="text" class="form-control" id="" name="Enfermedades" placeholder="Liste enfermedades que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Alergias</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Liste alergias que padece" >
+						<input type="text" class="form-control" id="" name="Alergias" placeholder="Liste alergias que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tiene alg&uacute;n tipo de debilidad motriz?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Liste alergias que padece" >
+						<input type="text" class="form-control" id="" name="DebilidadMotriz" placeholder="Liste alergias que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Direcci&oacute;n</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Direcci&oacute;n con numero ext/int" >
+						<input type="text" class="form-control" id="" name="Direccion" placeholder="Direcci&oacute;n con numero ext/int" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">C&oacute;digo postal</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="C&oacute;digo postal" >
+						<input type="text" class="form-control" id="" name="CP" placeholder="C&oacute;digo postal" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Colonia</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Colonia" >
+						<input type="text" class="form-control" id="" name="Colonia" placeholder="Colonia" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Municipio</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Municipio" >
+						<input type="text" class="form-control" id="" name="Municipio" placeholder="Municipio" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Tel&eacute;fono" >
+						<input type="text" class="form-control" id="" name="Telefono" placeholder="Tel&eacute;fono" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="" name="" placeholder="Email" >
+						<input type="email" class="form-control" id="" name="Email" placeholder="Email" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo del padre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre" >
+						<input type="text" class="form-control" id="" name="NombrePadre" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Ocupaci&oacute;n laboral</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Puesto" >
+						<input type="text" class="form-control" id="" name="OcupacionPadre" placeholder="Puesto" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Empresa donde labora</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Empresa" >
+						<input type="text" class="form-control" id="" name="EmpresaPadre" placeholder="Empresa" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Sueldo" >
+						<input type="text" class="form-control" id="" name="SueldoPadre" placeholder="Sueldo" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo de la madre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre" >
+						<input type="text" class="form-control" id="" name="NombreMadre" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Ocupaci&oacute;n laboral</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Puesto" >
+						<input type="text" class="form-control" id="" name="OcupacionMadre" placeholder="Puesto" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Empresa donde labora</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Empresa" >
+						<input type="text" class="form-control" id="" name="EmpresaMadre" placeholder="Empresa" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Sueldo" >
+						<input type="text" class="form-control" id="" name="SueldoMadre" placeholder="Sueldo" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Ha cursado otros estudios?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Si/No y ¿Cuales?" >
+						<input type="text" class="form-control" id="" name="OtrosEstudios" placeholder="Si/No y ¿Cuales?" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Ha suspendido sus estudios?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Si/No y ¿Por qu&eacute; causa?" >
+						<input type="text" class="form-control" id="" name="SuspendidoEstudios" placeholder="Si/No y ¿Por qu&eacute; causa?" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Qu&eacute; materias ha reprobado?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="MateriasReprobadas" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Qui&eacute;n lo apoya econ&oacute;micamente en sus estudios?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="ApoyoEconomico" placeholder="" >
 					</div>
 				</div>
 				<br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿C&oacute;mo se enter&oacute; de la escuela?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="EnteroEscuela" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">¿Por qu&eacute; desea estudiar en la Cruz Roja?</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<textarea class="form-control" rows="3" id="textArea" name="PorqueEstudiarCR"></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">¿Por qu&eacute; desea estudiar enfermer&iacute;a?</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<textarea class="form-control" rows="3" id="textArea" name="PorqueEstudiarEnfermeria"></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">Ademas de enfermer&iacute;a, ¿qu&eacute; otras carreras le gustar&iacute;a estudiar?</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<textarea class="form-control" rows="3" id="textArea" name="OtrasCarrerasPosibles"></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Realiz&oacute; su registro ante el CENEVAL?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Puntaje CENEVAL" >
+						<input type="text" class="form-control" id="" name="RegistroCeneval" placeholder="Puntaje CENEVAL" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Realiz&oacute; su registro ante la escuela?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="RegistroEscuela" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Contest&oacute; el examen psicom&eacute;trico?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="ExamenPsicometrico" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Acudi&oacute; a la entrevista?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="" >
+						<input type="text" class="form-control" id="" name="Entrevisto" placeholder="" >
 					</div>
 				</div>
 			</div> <!-- /row  -->

@@ -1,0 +1,961 @@
+<?php
+
+	require '../excelExport/PHPExcel.php';
+	if(!isset($_SESSION)){
+		session_start();
+	}
+if(!(isset($_SESSION['user_type'])&& ($_SESSION['user_type']==0 || $_SESSION['user_type'] == 1 || $_SESSION['user_type'] == 2))){
+	    http_response_code(403);
+		$error='a%3A1%3A%7Bi%3A0%3Bs%3A64%3A"No+tienes+los+permisos+necesarios+para+accesar+a+este+contenido."%3B%7D';
+		include('../Controllers/error.php');
+		die(); 
+}
+	$serverName = "(local)"; //serverName\instanceName
+	$connectionInfo = array( "Database"=>"becas_filantropia", "CharacterSet" => "UTF-8");
+
+	//connection to the database
+	global $db;
+	$db = sqlsrv_connect( $serverName, $connectionInfo)
+	or die(print_r( sqlsrv_errors(), true));
+	$termino = isset($_GET["termino"]) ? " and Semestre =" . $_GET['termino'] . " " : "";
+	$anio = isset($_GET["anio"]) ? " and Anio = " . $_GET['anio'] . " " : "";
+	$estatus = "";
+	if($_GET["estatus"] != "Todos"){
+		
+			$estatus = isset($_GET["estatus"]) ? " and estatus like '%" .  $_GET['estatus'] . "%' " : "";
+		
+	}
+	$idReporte = isset($_GET["reporte"]) ? $_GET['reporte'] : "";
+	$action = isset($_GET["action"]) ? $_GET['action'] : "0";
+	$buscaOpcion = isset($_GET["buscaOpcion"]) ? $_GET['buscaOpcion'] : "";
+	$buscaPalabra = isset($_GET["buscaPalabra"]) ? $_GET['buscaPalabra'] : "";
+	$buscaPalabra = mysql_real_escape_string($buscaPalabra);
+	$buscaPor = "";
+	$orderby = "";
+	switch ($_GET["orderby"]){
+		case "Solicitud":
+			$orderby = " order by solicitud.id_solicitud ";
+			break;
+		case "Apellido":
+			$orderby = " order by estudiante.apaterno ";
+			break;
+		case "Estatus":
+			$orderby = " order by solicitud.estatus ";
+			break;
+		default:
+			$orderby = " order by estudiante." . $_GET["orderby"];
+	}
+	if($buscaOpcion != "Ninguno"){
+		if($buscaOpcion == "Apellido"){
+			$buscaPor = " and estudiante.apaterno like '%$buscaPalabra%' ";
+		}
+		else{
+		$buscaPor = " and estudiante.$buscaOpcion like '%$buscaPalabra%' ";
+	}	}
+
+		switch ($idReporte){
+		case 1:
+			$sql = 
+				"select solicitud.id_solicitud,estudiante.matricula,siglas,
+ 				estudiante.nombre, estudiante.apaterno,estatus, COALESCE(padres,0)+COALESCE(empresa,0)+COALESCE(trabajo,0)+COALESCE(fundaciones,0) as ingresos, COALESCE(colegiatura,0)+COALESCE(renta,0)+COALESCE(alimentacion,0) as egresos, red_filantropia, otras ,solicitud.*
+				from Convocatoria, solicitud, estudiante, Carrera, Ingreso_Alumno, egreso_alumno
+				where convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+				and carrera.id_carrera=estudiante.id_carrera
+				and solicitud.Id_solicitud= egreso_alumno.Id_solicitud
+				and Ingreso_Alumno.id_solicitud = solicitud.id_solicitud
+				and Solicitud.Matricula=Estudiante.Matricula";
+			
+			break;
+		case 2:
+			$sql = 
+				"Select solicitud.Matricula, estudiante.Nombre, estudiante.APaterno,
+				COALESCE(ea.colegiatura,0) + COALESCE(ea.Seguros_medicos,0) as escuela
+				, COALESCE(ea.Alimentacion,0) + COALESCE(ea.Renta,0) as comidaRenta
+				, COALESCE(ea.Transportacion_local,0) + COALESCE(ea.Transporte_foraneo,0)
+				as transporte, COALESCE(ea.Luz,0) + COALESCE(ea.Gas,0) + COALESCE(ea.Telefono,0)
+				+ COALESCE(ea.Internet,0) + COALESCE(ea.Cable,0) + COALESCE(ea.Lavanderia,0) +
+				COALESCE(ea.Servicio_domestico,0) + COALESCE(ea. Celular,0) as servicios
+				, COALESCE(ea.Vestido,0) + COALESCE(ea.Libros,0) + COALESCE(ea.Aseo_personal,0)+ 
+				COALESCE(ea.Entretenimiento,0) + COALESCE(ea.Papeleria_materiales,0) +
+				COALESCE(ea.De_la_carrera,0) + COALESCE(ea.Gasto_servicio_social,0) +
+				COALESCE(ea.Otros1_cantidad,0) + COALESCE(ea.Otros2_cantidad,0) as
+				otros  from Convocatoria,  Egreso_Alumno ea, Solicitud , Estudiante 
+				where solicitud.ID_Solicitud = ea.ID_Solicitud 
+				and solicitud.Matricula = estudiante.Matricula 
+				and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria";
+
+			break;
+		case 3:
+			$sql = 
+			"Select estudiante.Matricula, estudiante.Nombre, estudiante.APaterno, v.numCarros, v.adeudoCar, p.numProp, p.adeudoProp from Estudiante, 
+ 			(select solicitud.Matricula, COUNT(Vehiculos.id_solicitud) 
+ 			as numCarros, SUM(COALESCE(Vehiculos.cantidad_adeudo,0)) as adeudoCar 
+ 			from solicitud, Vehiculos where solicitud.id_solicitud = Vehiculos.id_solicitud group by solicitud.Matricula) v, 
+			(select solicitud.Matricula,
+ 			COUNT(Propiedades.id_solicitud) as numProp,
+ 			SUM(COALESCE(Propiedades.cantidad_adeudo,0)) as adeudoProp from solicitud, 
+ 			Propiedades where solicitud.id_solicitud = Propiedades.id_solicitud 
+ 			group by solicitud.Matricula) p, Convocatoria, Solicitud where 
+ 			Estudiante.Matricula = p.Matricula and Estudiante.Matricula = v.Matricula
+ 			and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+ 			and solicitud.Matricula = estudiante.Matricula ";
+
+			break;
+		case 4:
+			$sql = 
+			"select solicitud.ID_Solicitud, solicitud.Matricula, estudiante.Nombre, estudiante.APaterno,g.Pago_Casa , g.Pago_Credito_Casa , 
+				g.mantenimiento_casa , g.Pago_Propiedades,
+			g.Gasolina, g.Pago_Auto, g.Mantenimiento_Auto,
+			g.Seguro_Auto, g.Servicios,
+			g.Servicio_Domestico, g.Alimentos,
+			g.Colegiatura, g.Diversiones, g.Vestido,
+			g.Libros, g.Creditos, g.Gastos_medicos_mayores
+			,g.Tratamientos_discapacidad, g.Impuestos, 
+			g.Tarjetas_Credito, g.Manutencion_Familiar, g.Sostenimiento_Solicitante
+			, g.Otros_Cantidad 
+			from Gastos_Familiares g, Solicitud , Estudiante, Convocatoria
+			where solicitud.ID_Solicitud = g.ID_Solicitud
+			and solicitud.Matricula = estudiante.Matricula
+			and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+			and g.No_Gasto = 2";
+			break;
+		case 5:
+			$sql = 
+			"select estudiante.Matricula, estudiante.Nombre, estudiante.APaterno, COUNT(a.ID_Solicitud) as
+			numAportantes, SUM(COALESCE(a.Sueldo,0)) as sumSueldos, 
+			SUM(COALESCE(a.Rentas,0)) as sumRentas, SUM(COALESCE(a.Aguinaldo,0)) as sumAguinaldos
+ 			from Estudiante , Solicitud, Aportante a, Convocatoria where Solicitud.ID_Solicitud = a.ID_Solicitud
+			and estudiante.Matricula = solicitud.Matricula and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria ";
+			break;
+		case 6:
+			$sql = 
+			"select solicitud.Matricula, estudiante.Nombre, estudiante.APaterno, i.Padres, i.Red_filantropia, i.Empresa, i.Fundaciones, i.Trabajo, i.Otras
+ 			from estudiante , Solicitud, Ingreso_Alumno i, Convocatoria where 
+			estudiante.Matricula = solicitud.Matricula 
+			and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+			and i.id_solicitud = solicitud.id_solicitud ";
+			break;
+		case 7:
+			$sql = 
+			"select solicitud.Matricula, estudiante.Nombre, estudiante.APaterno, Egreso_Alumno.*
+ 			from estudiante , Solicitud, Egreso_Alumno, Convocatoria where 
+			estudiante.Matricula = solicitud.Matricula 
+			and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+			and Egreso_Alumno.id_solicitud = solicitud.id_solicitud ";
+			break;
+
+		case 8:
+			$sql = "select solicitud.Matricula, estudiante.Nombre, estudiante.APaterno, Aportante.*
+ 			from estudiante , Solicitud, Aportante, Convocatoria where 
+			estudiante.Matricula = solicitud.Matricula 
+			and convocatoria.convocatoria_ID=solicitud.ID_Convocatoria
+			and Aportante.id_solicitud = solicitud.id_solicitud ";
+		break;
+		default:
+			$sql = "";
+	}
+	$sql = $sql . $termino . $anio .  $estatus . $buscaPor;
+	if($idReporte == 5){
+		$sql = $sql . " group by solicitud.id_solicitud, estudiante.Matricula, estudiante.Nombre, estudiante.APaterno";
+	}
+	$sql = $sql . $orderby;
+	$stmt = sqlsrv_query($db, $sql);
+	if ($action == 1){
+	switch($idReporte){
+	case 1:
+		$headings = array('Matricula','Nombre', 'Apellido','Estatus', 'Ingresos del Alumno', 'Egresos', 'Ingreso red filantropia', 'Otros Ingresos', 'Carrera', 'Solicitud');
+		break;
+	case 2:
+		$headings = array('Alumno', 'Comida y Renta','Transporte', 'Servicios','Escuela', 'Otros', 'Total');
+		break;
+	case 3:
+		$headings = array('Alumno', 'Numero de Carros','Adeudo de Carros', 'Numero de propiedades', 'Adeudo de propiedades');
+		break;
+
+	case 4:
+		$headings = array('Solicitud', 'Alumno','Pago casa', 'Pago credito casa', 'Mantenimiento casa', 'Pago propiedades', 'Gasolina', 'Pago auto', 'Mantenimiento auto', 'Seguro auto', 'Servicios', 'Servicio domestico', 'Alimentos', 'Colegiatura', 'Diversiones', 'Vestido', 'Libros', 'Creditos', 'Gatos medicos mayores', 'Tratamientos discapacidad', 'Impuestos', 'Tarjetas de credito', 'Manutencion familiar', 'Sostenimiento solicitante', 'Otros', 'Total');
+		break;
+	case 5:
+		$headings = array('Alumno', 'Numero de Aportantes','Sueldos', 'Rentas', 'Aguinaldos', 'Total');
+		break;
+
+	case 6:
+		$headings = array('Alumno', 'Padres', 'Red filantropia', 'Empresa', 'Fundaciones', 'Trabajo', 'Otras', 'Total' );
+		break;
+	case 7:
+		$headings = array('Alumno', 'colegiatura', 'Seguros medicos', 'Alimentacion', 'Renta', 'Transportacion local', 'Transporte foraneo', 'Luz', 'Gas', 'Telefono', 'Internet', 'Cable', 'Lavanderia', 'Vestido', 'Celular', 'Libros', 'Aseo personal', 'Entretenimiento', 'Papeleria materiales', 'De la carrera', 'Servicio domestico', 'Gasto servicio social', 'Otros', 'Total');
+		break;
+	case 8:
+		$headings = array('Alumno' , 'No aportante' , 'Nombre completo' , 'Nombre empresa' , 'Parentesco' , 'Sueldo' , 'Intereses dividendo' , 'Honorarios' , 'Rentas' , 'Ventas comisiones' , 'Aguinaldo' , 'Ahorros' , 'Bonos' , 'Otros');
+		break;
+	default:
+		$headings = "";
+	}
+
+  // Create a new PHPExcel object
+  $objPHPExcel = new PHPExcel();
+  $objPHPExcel->getActiveSheet()->setTitle('Reporte');
+
+  $rowNumber = 1;
+  $col = 'A';
+  foreach($headings as $heading) {
+    $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$heading);
+    $col++;
+  }
+
+  // Loop through the result set
+  $rowNumber = 2;
+  while ($row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC)) {
+    $col = 'A';
+
+    switch($idReporte){
+	case 1:
+		$matricula=$row['matricula'];
+      		$nombre=$row['nombre'];
+      		$apellido=$row['apaterno'];
+      		$estatus=$row['estatus'];
+      		$ingresos =  $row['ingresos'];
+      		$egresos = $row['egresos'];
+      		$carrera=$row['siglas'];
+      		$id_solicitud=$row['id_solicitud'];
+      		$red_filantropia = $row['red_filantropia'];
+      		$otros_ingresos = $row['otras'];
+      	
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$matricula);
+      $col++;
+	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$nombre);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$apellido);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$estatus);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$ingresos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$egresos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$red_filantropia);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$otros_ingresos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$carrera);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$id_solicitud);
+      $col++; 
+		break;
+	case 2:
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$escuela=$row['escuela'];
+      		$comidaRenta=$row['comidaRenta'];
+      		$transporte=$row['transporte'];
+      		$servicios =  $row['servicios'];
+      		$otros = $row['otros'];
+      		$total = $otros + $servicios + $transporte + $comidaRenta + $escuela;
+
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      $col++;
+	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$comidaRenta);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$transporte);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$servicios);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$escuela);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$otros);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$total);
+      $col++;
+		break;
+	case 3:
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$numCarros=$row['numCarros'];
+      		$adeudoCar=$row['adeudoCar'];
+      		$numProp=$row['numProp'];
+      		$adeudoProp =  $row['adeudoProp'];
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$numCarros);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$adeudoCar);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$numProp);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$adeudoProp);
+      $col++;
+		break;
+	case 4:
+			$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$solicitud = $row['ID_Solicitud'];
+      		$Pago_Casa = $row['Pago_Casa'];
+      		$Pago_Credito_Casa = $row['Pago_Credito_Casa'];
+      		$mantenimiento_casa = $row['mantenimiento_casa'];
+      		$Pago_Propiedades = $row['Pago_Propiedades'];
+      		$Gasolina = $row['Gasolina'];
+      		$Pago_Auto = $row['Pago_Auto'];
+      		$Mantenimiento_Auto = $row['Mantenimiento_Auto'];
+      		$Seguro_Auto = $row['Seguro_Auto'];
+      		$Servicios = $row['Servicios'];
+      		$Servicio_Domestico = $row['Servicio_Domestico'];
+      		$Alimentos = $row['Alimentos'];
+      		$Colegiatura = $row['Colegiatura'];
+      		$Diversiones = $row['Diversiones'];
+      		$Vestido = $row['Vestido'];
+      		$Libros = $row['Libros'];
+      		$Creditos = $row['Creditos'];
+      		$Gastos_medicos_mayores = $row['Gastos_medicos_mayores'];
+      		$Tratamientos_discapacidad = $row['Tratamientos_discapacidad'];
+      		$Impuestos = $row['Impuestos'];
+      		$Tarjetas_Credito = $row['Tarjetas_Credito'];
+      		$Manutencion_Familiar = $row['Manutencion_Familiar'];
+      		$Sostenimiento_Solicitante = $row['Sostenimiento_Solicitante'];
+      		$Otros_Cantidad = $row['Otros_Cantidad'];
+      		$total = $Pago_Casa + $Pago_Credito_Casa + $mantenimiento_casa + $Pago_Propiedades + $Gasolina + $Pago_Auto + $Mantenimiento_Auto + $Seguro_Auto + $Servicios + $Servicio_Domestico + $Alimentos + $Colegiatura + $Diversiones + $Vestido + $Libros + $Creditos + $Gastos_medicos_mayores + $Tratamientos_discapacidad + $Impuestos + $Tarjetas_Credito + $Manutencion_Familiar + $Sostenimiento_Solicitante + $Otros_Cantidad;
+
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$solicitud);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Pago_Casa);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Pago_Credito_Casa);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$mantenimiento_casa);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Pago_Propiedades);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Gasolina);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Pago_Auto);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Mantenimiento_Auto);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Seguro_Auto);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Servicios);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Servicio_Domestico);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Alimentos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Colegiatura);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Diversiones);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Vestido);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Libros);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Creditos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Gastos_medicos_mayores);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Tratamientos_discapacidad);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Impuestos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Tarjetas_Credito);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Manutencion_Familiar);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Sostenimiento_Solicitante);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$otros);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$total);
+      $col++;
+		break;
+	case 5:
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$sumSueldos=$row['sumSueldos'];
+      		$sumRentas=$row['sumRentas'];
+      		$sumAguinaldos=$row['sumAguinaldos'];
+      		$numAportantes =  $row['numAportantes'];
+      		$total = $sumSueldos + $sumRentas + $sumAguinaldos;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$numAportantes);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$sumSueldos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$sumRentas);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$sumAguinaldos);
+      $col++;
+      $objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$total);
+      $col++;
+		break;
+
+	case 6:
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+		$padres=$row['Padres'];
+		$red_filantropia=$row['Red_filantropia'];
+		$empresa=$row['Empresa'];
+		$fundaciones=$row['Fundaciones'];
+		$trabajo=$row['Trabajo'];
+		$otras=$row['Otras'];
+		$total = $padres + $red_filantropia + $empresa + $fundaciones + $trabajo + $otras;
+		$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$padres);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$red_filantropia);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$empresa);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$fundaciones);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$trabajo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$otras);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$total);
+      	$col++;
+      	break;
+     case 7:
+     	$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+     	$Colegiatura=$row['Colegiatura'];
+     	$Seguros_medicos=$row['Seguros_medicos'];
+     	$Alimentacion=$row['Alimentacion'];
+     	$Renta=$row['Renta'];
+     	$Transportacion_local=$row['Transportacion_local'];
+     	$Transporte_foraneo=$row['Transporte_foraneo'];
+     	$Luz=$row['Luz'];
+     	$Gas=$row['Gas'];
+     	$Telefono=$row['Telefono'];
+     	$Internet=$row['Internet'];
+     	$Cable=$row['Cable'];
+     	$Lavanderia=$row['Lavanderia'];
+     	$Vestido=$row['Vestido'];
+     	$Celular=$row['Celular'];
+     	$Libros=$row['Libros'];
+     	$Aseo_personal=$row['Aseo_personal'];
+     	$Entretenimiento=$row['Entretenimiento'];
+     	$Papeleria_materiales=$row['Papeleria_materiales'];
+     	$De_la_carrera=$row['De_la_carrera'];
+     	$Servicio_domestico=$row['Servicio_domestico'];
+     	$Gasto_servicio_social=$row['Gasto_servicio_social'];
+     	$otros=$row['Otros1_cantidad']+ $row['Otros2_cantidad'];
+     	$total= $Colegiatura + $Seguros_medicos + $Alimentacion + $Renta + $Transportacion_local + $Transporte_foraneo + $Luz + $Gas + $Telefono + $Internet + $Cable + $Lavanderia + $Vestido + $Celular + $Libros + $Aseo_personal + $Entretenimiento + $Papeleria_materiales + $De_la_carrera + $Servicio_domestico + $Gasto_servicio_social + $otros;
+     	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Colegiatura);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Seguros_medicos);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Alimentacion);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Renta);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Transportacion_local);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Transporte_foraneo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Luz);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Gas);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Telefono);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Internet);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Cable);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Lavanderia);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Vestido);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Celular);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Libros);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Aseo_personal);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Entretenimiento);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Papeleria_materiales);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$De_la_carrera);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Servicio_domestico);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Gasto_servicio_social);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$otros);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$total);
+      	$col++;
+      	break;
+     case 8:
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+		$No_aportante=$row['No_aportante'];
+		$Nombre_completo=$row['Nombre_completo'];
+		$Nombre_empresa=$row['Nombre_empresa'];
+		$Parentesco=$row['Parentesco'];
+		$Sueldo=$row['Sueldo'];
+		$Intereses_dividendo=$row['Intereses_dividendo'];
+		$Honorarios=$row['Honorarios'];
+		$Rentas=$row['Rentas'];
+		$Ventas_comisiones=$row['Ventas_comisiones'];
+		$Aguinaldo=$row['Aguinaldo'];
+		$Ahorros=$row['Ahorros'];
+		$Bonos=$row['Bonos'];
+		$Otros=$row['Otros1_cantidad'] + $row['Otros2_cantidad'];
+		$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$datos);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$No_aportante);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Nombre_completo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Nombre_empresa);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Parentesco);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Sueldo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Intereses_dividendo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Honorarios);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Rentas);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Ventas_comisiones);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Aguinaldo);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Ahorros);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Bonos);
+      	$col++;
+      	$objPHPExcel->getActiveSheet()->setCellValue($col.$rowNumber,$Otros);
+      	$col++;
+      	break;
+	default:
+		$headings = "";
+	}
+ 
+    		   
+    $rowNumber++;
+  }
+
+  // Freeze pane so that the heading line won't scroll
+  $objPHPExcel->getActiveSheet()->freezePane('A2');
+
+  // Save as an Excel BIFF (xls) file
+  $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+
+  header('Content-Type: application/vnd.ms-excel');
+  header('Content-Disposition: attachment;filename="reporte.xls"');
+  header('Cache-Control: max-age=0');
+
+  $objWriter->save('php://output');
+  exit();
+	}
+
+	switch($idReporte){
+	case 1:
+	echo "<thead>
+				<tr>
+					<th>Matricula</th>
+					<th>Nombre</th>
+					<th>Apellido P.</th>
+					<th>Estatus</th>
+					<th>Ingresos del Alumno</th>
+					<th>Egresos(Colegiatura+Renta+Alimentacion)</th>
+					<th>Ingreso red filantropia </th>
+					<th>Otros ingresos </th>
+					<th>Carrera</th>
+					<th>Solicitud</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$matricula=$row['matricula'];
+      		$nombre=$row['nombre'];
+      		$apellido=$row['apaterno'];
+      		$estatus=$row['estatus'];
+      		$carrera=$row['siglas'];
+      		$id_solicitud=$row['id_solicitud'];
+      		$ingresos =  $row['ingresos'];
+      		$red_filantropia = $row['red_filantropia'];
+      		$otros_ingresos = $row['otras'];
+      		$egresos = $row['egresos'];
+      				echo " <tr>
+      				<td>$matricula</td>
+      				<td>$nombre</td>
+      				<td>$apellido</td>
+      				<td>$estatus</td>
+      				<td>$ingresos</td>
+      				<td>$egresos</td>
+      				<td>$red_filantropia</td>
+      				<td>$otros_ingresos</td>
+      				<td>$carrera</td>
+      				<td>$id_solicitud</td>
+      				</tr>";
+				
+			}
+		break;
+	case 2:
+	echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th>Escuela</th>
+					<th>Comida y Renta</th>
+					<th>Transporte</th>
+					<th>Servicios</th>
+					<th>Otros</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$escuela=$row['escuela'];
+      		$comidaRenta=$row['comidaRenta'];
+      		$transporte=$row['transporte'];
+      		$servicios =  $row['servicios'];
+      		$otros = $row['otros'];
+      		$total = $otros + $servicios + $transporte + $comidaRenta + $escuela;
+      				echo " <tr>
+      				<td>$datos</td>
+      				<td>$escuela</td>
+      				<td>$comidaRenta</td>
+      				<td>$transporte</td>
+      				<td>$servicios</td>
+      				<td>$otros</td>
+      				<td>$total</td>
+      				</tr>";
+				
+			}
+		break;
+	case 3:
+	echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th># Carros</th>
+					<th>Adeudo de Carros</th>
+					<th># Propiedades</th>
+					<th>Adeudo de propiedades</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$numCarros=$row['numCarros'];
+      		$adeudoCar=$row['adeudoCar'];
+      		$numProp=$row['numProp'];
+      		$adeudoProp =  $row['adeudoProp'];
+      				echo " <tr>
+      				<td>$datos</td>
+      				<td>$numCarros</td>
+      				<td>$adeudoCar</td>
+      				<td>$numProp</td>
+      				<td>$adeudoProp</td>
+      				</tr>";
+				
+			}
+
+		break;
+	case 4:
+		echo "<thead>
+				<tr>
+					<th>Solicitud</th>
+					<th>Alumno</th>
+					<th>Pago casa</th>
+					<th>Pago credito casa</th>
+					<th>Mantenimiento casa</th>
+					<th>Pago propiedades</th>
+					<th>Gasolina</th>
+					<th>Pago auto</th>
+					<th>Mantenimiento auto</th>
+					<th>Seguro auto</th>
+					<th>Servicios</th>
+					<th>Servicio domestico</th>
+					<th>Alimentos</th>
+					<th>Colegiatura</th>
+					<th>Diversiones</th>
+					<th>Vestido</th>
+					<th>Libros</th>
+					<th>Creditos</th>
+					<th>Gastos medicos mayores</th>
+					<th>Tratamientos discapacidad</th>
+					<th>Impuestos</th>
+					<th>Tarjetas de credito</th>
+					<th>Manutencion familiar</th>
+					<th>Sostenimiento solicitante</th>
+					<th>Otros</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$solicitud = $row['ID_Solicitud'];
+      		$Pago_Casa = $row['Pago_Casa'];
+      		$Pago_Credito_Casa = $row['Pago_Credito_Casa'];
+      		$mantenimiento_casa = $row['mantenimiento_casa'];
+      		$Pago_Propiedades = $row['Pago_Propiedades'];
+      		$Gasolina = $row['Gasolina'];
+      		$Pago_Auto = $row['Pago_Auto'];
+      		$Mantenimiento_Auto = $row['Mantenimiento_Auto'];
+      		$Seguro_Auto = $row['Seguro_Auto'];
+      		$Servicios = $row['Servicios'];
+      		$Servicio_Domestico = $row['Servicio_Domestico'];
+      		$Alimentos = $row['Alimentos'];
+      		$Colegiatura = $row['Colegiatura'];
+      		$Diversiones = $row['Diversiones'];
+      		$Vestido = $row['Vestido'];
+      		$Libros = $row['Libros'];
+      		$Creditos = $row['Creditos'];
+      		$Gastos_medicos_mayores = $row['Gastos_medicos_mayores'];
+      		$Tratamientos_discapacidad = $row['Tratamientos_discapacidad'];
+      		$Impuestos = $row['Impuestos'];
+      		$Tarjetas_Credito = $row['Tarjetas_Credito'];
+      		$Manutencion_Familiar = $row['Manutencion_Familiar'];
+      		$Sostenimiento_Solicitante = $row['Sostenimiento_Solicitante'];
+      		$Otros_Cantidad = $row['Otros_Cantidad'];
+      		$total = $Pago_Casa + $Pago_Credito_Casa + $mantenimiento_casa + $Pago_Propiedades + $Gasolina + $Pago_Auto + $Mantenimiento_Auto + $Seguro_Auto + $Servicios + $Servicio_Domestico + $Alimentos + $Colegiatura + $Diversiones + $Vestido + $Libros + $Creditos + $Gastos_medicos_mayores + $Tratamientos_discapacidad + $Impuestos + $Tarjetas_Credito + $Manutencion_Familiar + $Sostenimiento_Solicitante + $Otros_Cantidad;
+      		
+      				echo " <tr>
+      				<td>$solicitud</td>
+      				<td>$datos</td>
+      				<td>$Pago_Casa</td>
+      				<td>$Pago_Credito_Casa</td>
+      				<td>$mantenimiento_casa</td>
+      				<td>$Pago_Propiedades</td>
+      				<td>$Gasolina</td>
+      				<td>$Pago_Auto</td>
+      				<td>$Mantenimiento_Auto</td>
+      				<td>$Seguro_Auto</td>
+      				<td>$Servicios</td>
+      				<td>$Servicio_Domestico</td>
+      				<td>$Alimentos</td>
+      				<td>$Colegiatura</td>
+      				<td>$Diversiones</td>
+      				<td>$Vestido</td>
+      				<td>$Libros</td>
+      				<td>$Creditos</td>
+      				<td>$Gastos_medicos_mayores</td>
+      				<td>$Tratamientos_discapacidad</td>
+      				<td>$Impuestos</td>
+      				<td>$Tarjetas_Credito</td>
+      				<td>$Manutencion_Familiar</td>
+      				<td>$Sostenimiento_Solicitante</td>
+					<td>$Otros_Cantidad</td>
+					<td>$total</td>
+      				</tr>";
+				
+			}
+		break;
+	case 5:
+	echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th># Aportantes</th>
+					<th>Sueldos</th>
+					<th>Rentas</th>
+					<th>Aguinaldos</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+      		$sumSueldos=$row['sumSueldos'];
+      		$sumRentas=$row['sumRentas'];
+      		$sumAguinaldos=$row['sumAguinaldos'];
+      		$numAportantes =  $row['numAportantes'];
+      		$total = $sumSueldos + $sumRentas + $sumAguinaldos;
+      				echo " <tr>
+      				<td>$datos</td>
+      				<td>$numAportantes</td>
+      				<td>$sumSueldos</td>
+      				<td>$sumRentas</td>
+      				<td>$sumAguinaldos</td>
+      				<td>$total</td>
+      				</tr>";
+				
+			}
+		break;
+	case 6:
+		echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th>Padres</th>
+					<th>Red filantropia</th>
+					<th>Empresa</th>
+					<th>Fundaciones</th>
+					<th>Trabajo</th>
+					<th>Otras</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>";	
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+      		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+			$padres=$row['Padres'];
+			$red_filantropia=$row['Red_filantropia'];
+			$empresa=$row['Empresa'];
+			$fundaciones=$row['Fundaciones'];
+			$trabajo=$row['Trabajo'];
+			$otras=$row['Otras'];
+			$total = $padres + $red_filantropia + $empresa + $fundaciones + $trabajo + $otras;
+      				echo " <tr>
+      				<td>$datos</td>
+      				<td>$padres</td>
+      				<td>$red_filantropia</td>
+      				<td>$empresa</td>
+      				<td>$fundaciones</td>
+      				<td>$trabajo</td>
+      				<td>$otras</td>
+      				<td>$total</td>
+      				</tr>";
+				
+			}
+		break;
+
+	case 7:
+		echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th>Colegiatura</th>
+					<th>Seguros medicos </th>
+					<th>Alimentacion</th>
+					<th>Renta</th>
+					<th>Transportacion local</th>
+					<th>Transporte foraneo</th>
+					<th>Luz</th>
+					<th>Gas</th>
+					<th>Telefono</th>
+					<th>Internet</th>
+					<th>Cable</th>
+					<th>Lavanderia</th>
+					<th>Vestido</th>
+					<th>Celular</th>
+					<th>Libros</th>
+					<th>Aseo personal</th>
+					<th>Entretenimiento</th>
+					<th>Papeleria materiales</th>
+					<th>De la carrera</th>
+					<th>Servicio domestico</th>
+					<th>Gasto servicio social</th>
+					<th>Otros</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+		$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+     	$Colegiatura=$row['Colegiatura'];
+     	$Seguros_medicos=$row['Seguros_medicos'];
+     	$Alimentacion=$row['Alimentacion'];
+     	$Renta=$row['Renta'];
+     	$Transportacion_local=$row['Transportacion_local'];
+     	$Transporte_foraneo=$row['Transporte_foraneo'];
+     	$Luz=$row['Luz'];
+     	$Gas=$row['Gas'];
+     	$Telefono=$row['Telefono'];
+     	$Internet=$row['Internet'];
+     	$Cable=$row['Cable'];
+     	$Lavanderia=$row['Lavanderia'];
+     	$Vestido=$row['Vestido'];
+     	$Celular=$row['Celular'];
+     	$Libros=$row['Libros'];
+     	$Aseo_personal=$row['Aseo_personal'];
+     	$Entretenimiento=$row['Entretenimiento'];
+     	$Papeleria_materiales=$row['Papeleria_materiales'];
+     	$De_la_carrera=$row['De_la_carrera'];
+     	$Servicio_domestico=$row['Servicio_domestico'];
+     	$Gasto_servicio_social=$row['Gasto_servicio_social'];
+     	$otros=$row['Otros1_cantidad']+ $row['Otros2_cantidad'];
+     	$total= $Colegiatura + $Seguros_medicos + $Alimentacion + $Renta + $Transportacion_local + $Transporte_foraneo + $Luz + $Gas + $Telefono + $Internet + $Cable + $Lavanderia + $Vestido + $Celular + $Libros + $Aseo_personal + $Entretenimiento + $Papeleria_materiales + $De_la_carrera + $Servicio_domestico + $Gasto_servicio_social + $otros;
+     	echo " <tr>
+      				<th>$datos</th>
+      				<th>$Colegiatura</th>
+      				<th>$Seguros_medicos</th>
+      				<th>$Alimentacion</th>
+      				<th>$Renta</th>
+      				<th>$Transportacion_local</th>
+      				<th>$Transporte_foraneo</th>
+      				<th>$Luz</th>
+      				<th>$Gas</th>
+      				<th>$Telefono</th>
+      				<th>$Internet</th>
+      				<th>$Cable</th>
+      				<th>$Lavanderia</th>
+      				<th>$Vestido</th>
+      				<th>$Celular</th>
+      				<th>$Libros</th>
+      				<th>$Aseo_personal</th>
+      				<th>$Entretenimiento</th>
+      				<th>$Papeleria_materiales</th>
+      				<th>$De_la_carrera</th>
+      				<th>$Servicio_domestico</th>
+      				<th>$Gasto_servicio_social</th>
+      				<th>$otros</th>
+      				<th>$total</th>
+      				</tr>";
+
+     }
+     	break;
+
+     case 8:
+     	echo "<thead>
+				<tr>
+					<th>Alumno</th>
+					<th>No de aportante</th>
+					<th>Nombre</th>
+					<th>Empresa</th>
+					<th>Parentesco</th>
+					<th>Sueldo</th>
+					<th>Intereses dividendo</th>
+					<th>Honorarios</th>
+					<th>Rentas</th>
+					<th>Ventas comisiones</th>
+					<th>Aguinaldo</th>
+					<th>Ahorros</th>
+					<th>Bonos</th>
+					<th>Otros</th>
+				</tr>
+			</thead>
+			<tbody>";
+		while( $row = sqlsrv_fetch_array( $stmt, SQLSRV_FETCH_ASSOC) ) {
+	     	$datos=$row['Matricula'] . "  " . $row['Nombre'] . "  " . $row['APaterno'] ;
+			$No_aportante=$row['No_aportante'];
+			$Nombre_completo=$row['Nombre_completo'];
+			$Nombre_empresa=$row['Nombre_empresa'];
+			$Parentesco=$row['Parentesco'];
+			$Sueldo=$row['Sueldo'];
+			$Intereses_dividendo=$row['Intereses_dividendo'];
+			$Honorarios=$row['Honorarios'];
+			$Rentas=$row['Rentas'];
+			$Ventas_comisiones=$row['Ventas_comisiones'];
+			$Aguinaldo=$row['Aguinaldo'];
+			$Ahorros=$row['Ahorros'];
+			$Bonos=$row['Bonos'];
+			$Otros=$row['Otros1_cantidad'] + $row['Otros2_cantidad'];
+			     	echo " <tr>
+      				<th>$datos</th>
+      				<th>$No_aportante</th>
+      				<th>$Nombre_completo</th>
+      				<th>$Nombre_empresa</th>
+      				<th>$Parentesco</th>
+      				<th>$Sueldo</th>
+      				<th>$Intereses_dividendo</th>
+      				<th>$Honorarios</th>
+      				<th>$Rentas</th>
+      				<th>$Ventas_comisiones</th>
+      				<th>$Aguinaldo</th>
+      				<th>$Ahorros</th>
+      				<th>$Bonos</th>
+      				<th>$Otros</th>
+      				</tr>";
+		}
+		break;
+	default:
+		echo "Nada";
+	}
+
+			sqlsrv_free_stmt( $stmt);
+
+			echo "</tbody>";
+?>
