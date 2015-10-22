@@ -110,8 +110,8 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Sexo</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="Sexo" >
-							<option>Masculino</option>
-							<option>Femenino</option>
+							<option value="Masculino">Masculino</option>
+							<option value="Femenino">Femenino</option>
 						</select>
 					</div>
 				</div>
@@ -120,10 +120,10 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Estado Civil</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="EstadoCivil">
-							<option>Soltero</option>
-							<option>Casado</option>
-							<option>Divorciado</option>
-							<option>Viudo</option>
+							<option value="Soltero">Soltero</option>
+							<option value="Casado">Casado</option>
+							<option value="Divorciado">Divorciado</option>
+							<option value="Viudo">Viudo</option>
 						</select>
 					</div>
 				</div>
@@ -132,14 +132,14 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Grupo Sangu&iacute;neo</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="GrupoSanguineo">
-							<option>O-</option>
-							<option>O+</option>
-							<option>A-</option>
-							<option>A+</option>
-							<option>B-</option>
-							<option>B+</option>
-							<option>AB-</option>
-							<option>AB+</option>
+							<option value="O">O-</option>
+							<option value="O+">O+</option>
+							<option value="A">A-</option>
+							<option value="A+">A+</option>
+							<option value="B">B-</option>
+							<option value="B+">B+</option>
+							<option value="AB">AB-</option>
+							<option value="AB+">AB+</option>
 						</select>
 					</div>
 				</div>
@@ -162,8 +162,8 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Cuenta con servicio m&eacute;dico?</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="ServicioMedico" >
-							<option>S&iacute;</option>
-							<option>No</option>
+							<option value="Si">S&iacute;</option>
+							<option value="No">No</option>
 						</select>
 					</div>
 				</div>
@@ -172,8 +172,8 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Actualmente est&aacute; laborando?</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="ActualmenteLaborando">
-							<option>S&iacute;</option>
-							<option>No</option>
+							<option value="Si">S&iacute;</option>
+							<option value="No">No</option>
 						</select>
 					</div>
 				</div>
