@@ -62,6 +62,7 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
+				<form method="post" action="../../controladores/inscripcion/alumno.php">
 				<!-- CURP del alumno -->
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
@@ -379,6 +380,7 @@ include "../../includes/sessionAdmin.php";
 						<input type="text" class="form-control" id="" name="Entrevisto" placeholder="" >
 					</div>
 				</div>
+			</form>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
