@@ -379,6 +379,20 @@ include "../../includes/sessionAdmin.php";
 						<input type="text" class="form-control" id="" name="Entrevisto" placeholder="" >
 					</div>
 				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Contraseña</label>
+					<div class="col-lg-10">
+						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Repite contraseña</label>
+					<div class="col-lg-10">
+						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+					</div>
+				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
