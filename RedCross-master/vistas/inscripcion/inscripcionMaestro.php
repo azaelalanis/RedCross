@@ -9,11 +9,11 @@ include "../../includes/sessionAdmin.php";
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -30,7 +30,7 @@ include "../../includes/sessionAdmin.php";
 </head>
 
 <body class="home">
-	
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -59,6 +59,7 @@ include "../../includes/sessionAdmin.php";
 	<!-- /Intro-->
 
 	<!-- Highlights - jumbotron -->
+	<form action="../../controladores/inscripcion/maestro.php" method="post">
 	<div class="">
 		<div class="container">
 			<div class="row">
@@ -66,74 +67,76 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre" >
+						<input type="text" class="form-control" id="" name="nombres" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Apellido Paterno" >
+						<input type="text" class="form-control" id="" name="APaterno" placeholder="Apellido Paterno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Apellido Materno" >
+						<input type="text" class="form-control" id="" name="AMaterno" placeholder="Apellido Materno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="" name="" placeholder="dd/mm/aaaa" >
+						<input type="date" class="form-control" id="" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">CURP</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="CURP" >
+						<input type="text" class="form-control" id="" name="CURP" placeholder="CURP" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Enfermedades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Liste enfermedades que padece" >
+						<input type="text" class="form-control" id="" name="Enfermedades" placeholder="Liste enfermedades que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Alergias</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Liste alergias que padece" >
+						<input type="text" class="form-control" id="" name="Alergias" placeholder="Liste alergias que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Tel&eacute;fono" >
+						<input type="text" class="form-control" id="" name="Telefono" placeholder="Tel&eacute;fono" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="" name="" placeholder="Email" >
+						<input type="email" class="form-control" id="" name="Email" placeholder="Email" >
 					</div>
 				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
-				<a href="#">
-					<button style="width:50%;" align="center" class="btn btn-action" type="submit">Guardar</button>
-				</a>
+				<!--<a href="../../controladores/inscripcion/maestro.php">-->
+
+					<input style="width:50%;" align="center" class="btn btn-action" type="submit" value="Guardar"></input>
+				<!--</a>-->
 			</div> <!-- /row  -->
 		</div>
 	</div>
+</form>
 	<!-- /Highlights -->
 	<footer id="footer" class="top-space">
 
@@ -147,7 +150,7 @@ include "../../includes/sessionAdmin.php";
 							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 								<a href="mailto:#">cruz.roja@cr.com</a><br>
 								81-1477-1477
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -157,7 +160,7 @@ include "../../includes/sessionAdmin.php";
 							<p class="follow-me-icons clearfix">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -179,7 +182,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="#">Home</a> |
 								<a href="#">Contacto</a> |
 								<b><a href="#">Iniciar sesi&oacute;n</a></b>
 							</p>
@@ -189,7 +192,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
+								Copyright &copy; 2015, Cruz Roja.
 							</p>
 						</div>
 					</div>
@@ -197,7 +200,7 @@ include "../../includes/sessionAdmin.php";
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
+	</footer>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
