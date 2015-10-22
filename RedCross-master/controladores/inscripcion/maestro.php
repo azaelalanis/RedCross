@@ -12,6 +12,7 @@
 	$Alergias = $_POST["Alergias"];
 	$Telefono = $_POST["Telefono"];
 	$Email = $_POST["Email"];
+	$contrasena = $_POST["Contrasena1"];
 	$tabla = "maestro";
 
 function mysql_insert($table, $inserts) {
@@ -22,7 +23,8 @@ function mysql_insert($table, $inserts) {
 }
 
 mysql_insert($tabla, array(
-    'm_nombre' => $nombres,
+		'contra_maestro' => password_hash($contrasena, PASSWORD_DEFAULT),
+		'm_nombre' => $nombres,
     'm_apellidopaterno' => $APaterno,
     'm_apellidomaterno' => $AMaterno,
 		'm_fechanac' => $FechaNacimiento,
