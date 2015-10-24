@@ -62,31 +62,31 @@ include "../../includes/sessionAdmin.php";
 				</header>
 				<div>
 					<a href="../inscripcion/inscripcionAlumno.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir alumnos">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="../inscripcion/inscripcionMaestro.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir maestros">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Maestros">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="../inscripcion/inscripcionCurso.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir cursos">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="../inscripcion/inscripcionAdmin.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Inscribir administradores">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Administradores">
 					</a>
 				</div>
 				<br>
 				<div>
 					<a href="menuReportes.php">
-					<input class="btn btn-action" style="width:100%;" type="submit" value="Reportes">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Herramienta de generaci&oacute;n de Reportes">
 					</a>
 				</div>
 				<br>
@@ -101,94 +101,113 @@ include "../../includes/sessionAdmin.php";
 					<address>
 						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
 					</address>
+					<div class="radio">
+						<label>
+							<input type="radio" name="options" id="opcionInscribir" value="inscribir" checked="true">
+							Dar de alta
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="options" id="opcionEditar" value="editar">
+							Editar
+						</label>
+					</div>
+					<div class="radio">
+						<label>
+							<input type="radio" name="options" id="opcionBaja" value="baja">
+							Dar de baja
+						</label>
+					</div>
+				</div>
+			</div>
+
+		</aside>
+		<!-- /Sidebar -->
+
+	</div>
+</div>	<!-- /container -->
+
+
+<footer id="footer" class="top-space">
+
+	<div class="footer1">
+		<div class="container">
+			<div class="row">
+
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Informaci&oacute;n</h3>
+					<div class="widget-body">
+						<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
+							<a href="mailto:#">cruz.roja@cr.com</a><br>
+							81-1477-1477
+						</p>	
+					</div>
 				</div>
 
-			</aside>
-			<!-- /Sidebar -->
+				<div class="col-md-3 widget">
+					<h3 class="widget-title">Redes Sociales</h3>
+					<div class="widget-body">
+						<p class="follow-me-icons clearfix">
+							<a href=""><i class="fa fa-twitter fa-2"></i></a>
+							<a href=""><i class="fa fa-facebook fa-2"></i></a>
+						</p>	
+					</div>
+				</div>
 
+				<div class="col-md-6 widget">
+					<h3 class="widget-title">Información</h3>
+					<div class="widget-body">
+						<p>Sitio web de la Cruz Roja Mexicana.</p>
+					</div>
+				</div>
+
+			</div> <!-- /row of widgets -->
 		</div>
-	</div>	<!-- /container -->
+	</div>
 
+	<div class="footer2">
+		<div class="container">
+			<div class="row">
 
-	<footer id="footer" class="top-space">
-
-		<div class="footer1">
-			<div class="container">
-				<div class="row">
-					
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Informaci&oacute;n</h3>
-						<div class="widget-body">
-							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
-								<a href="mailto:#">cruz.roja@cr.com</a><br>
-								81-1477-1477
-							</p>	
-						</div>
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="simplenav">
+							<a href="#">Home</a> | 
+							<a href="#">Contacto</a> |
+							<b><a href="#">Iniciar sesi&oacute;n</a></b>
+						</p>
 					</div>
+				</div>
 
-					<div class="col-md-3 widget">
-						<h3 class="widget-title">Redes Sociales</h3>
-						<div class="widget-body">
-							<p class="follow-me-icons clearfix">
-								<a href=""><i class="fa fa-twitter fa-2"></i></a>
-								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
-						</div>
+				<div class="col-md-6 widget">
+					<div class="widget-body">
+						<p class="text-right">
+							Copyright &copy; 2015, Cruz Roja. 
+						</p>
 					</div>
+				</div>
 
-					<div class="col-md-6 widget">
-						<h3 class="widget-title">Información</h3>
-						<div class="widget-body">
-							<p>Sitio web de la Cruz Roja Mexicana.</p>
-						</div>
-					</div>
-
-				</div> <!-- /row of widgets -->
-			</div>
+			</div> <!-- /row of widgets -->
 		</div>
-
-		<div class="footer2">
-			<div class="container">
-				<div class="row">
-					
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="simplenav">
-								<a href="#">Home</a> | 
-								<a href="#">Contacto</a> |
-								<b><a href="#">Iniciar sesi&oacute;n</a></b>
-							</p>
-						</div>
-					</div>
-
-					<div class="col-md-6 widget">
-						<div class="widget-body">
-							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
-							</p>
-						</div>
-					</div>
-
-				</div> <!-- /row of widgets -->
-			</div>
-		</div>
-	</footer>
+	</div>
+</footer>
 
 
 
 
 
-	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-	<script src="assets/js/headroom.min.js"></script>
-	<script src="assets/js/jQuery.headroom.min.js"></script>
-	<script src="assets/js/template.js"></script>
-	
-	<!-- Google Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
-	<script src="assets/js/google-map.js"></script>
-	
+<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="assets/js/headroom.min.js"></script>
+<script src="assets/js/jQuery.headroom.min.js"></script>
+<script src="assets/js/template.js"></script>
+
+<!-- Google Maps -->
+<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
+<script src="assets/js/google-map.js"></script>
+
 
 </body>
 </html>
