@@ -14,7 +14,7 @@
 	$Alergias = $_POST["Alergias"];
 	$Telefono = $_POST["Telefono"];
 	$Email = $_POST["Email"];
-	$contrasena = $_POST["Contrasena1"];
+	$contrasena = $_POST["Contrasena"];
 
 
 $result = mysql_insert("maestro", array(

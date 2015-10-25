@@ -17,6 +17,7 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
+	<script src="../../includes/inscripciones_util.js"></script>
 
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
@@ -59,7 +60,7 @@ include "../../includes/sessionAdmin.php";
 	<!-- /Intro-->
 
 	<!-- Highlights - jumbotron -->
-	<form action="../../controladores/inscripcion/maestro.php" method="post">
+	<form method="post" onsubmit="return checkPasswords()" action="../../controladores/inscripcion/maestro.php" >
 	<div class="">
 		<div class="container">
 			<div class="row">
@@ -130,23 +131,22 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Contraseña</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="Contrasena" placeholder="Contraseña" >
+						<input type="password" class="form-control" id="password1" name="Contrasena" placeholder="Contraseña" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Repite contraseña</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+						<input type="password" onchange="showPasswordsAlert()" class="form-control" id="password2" name="" placeholder="Contraseña" >
 					</div>
 				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
-				<!--<a href="../../controladores/inscripcion/maestro.php">-->
-
-					<input style="width:50%;" align="center" class="btn btn-action" type="submit" value="Guardar"></input>
-				<!--</a>-->
+				<a href="#">
+					<input style="width:50%;" align="center" class="btn btn-action" value="Guardar" type="submit"></input>
+				</a>
 			</div> <!-- /row  -->
 		</div>
 	</div>
