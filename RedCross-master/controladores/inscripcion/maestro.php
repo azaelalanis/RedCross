@@ -1,6 +1,8 @@
 <?php
 
+	include "../../includes/sessionAdmin.php";
 	include "../../includes/conexion.php";
+	include "../../includes/mysql_util.php";
 
 	//Variables
 	$nombres = $_POST["nombres"];
@@ -14,13 +16,6 @@
 	$Email = $_POST["Email"];
 	$contrasena = $_POST["Contrasena1"];
 	$tabla = "maestro";
-
-function mysql_insert($table, $inserts) {
-    $values = array_map('mysql_real_escape_string', array_values($inserts));
-    $keys = array_keys($inserts);
-
-    return mysql_query('INSERT INTO `'.$table.'` (`'.implode('`,`', $keys).'`) VALUES (\''.implode('\',\'', $values).'\')');
-}
 
 mysql_insert($tabla, array(
 		'contra_maestro' => password_hash($contrasena, PASSWORD_DEFAULT),

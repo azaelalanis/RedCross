@@ -17,7 +17,7 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
+	<script src="../../includes/inscripciones_util.js"></script>
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -45,7 +45,7 @@ include "../../includes/sessionAdmin.php";
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="menuAdmin.html">Regresar</a></li>
+					<li><a href="../menus/menuAdmin.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -62,7 +62,7 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" action="../../controladores/inscripcion/alumno.php">
+				<form method="post" onsubmit="return checkPasswords()" action="../../controladores/inscripcion/alumno.php">
 				<!-- CURP del alumno -->
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
@@ -265,7 +265,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="SueldoPadre" placeholder="Sueldo" >
+						<input type="text" class="form-control" onchange="isFloat('SueldoPadre')" id="SueldoPadre" name="SueldoPadre" placeholder="Sueldo" >
 					</div>
 				</div>
 				<br><br>
@@ -293,7 +293,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="SueldoMadre" placeholder="Sueldo" >
+						<input type="text" class="form-control" onchange="isFloat('SueldoMadre')" id="SueldoMadre" name="SueldoMadre" placeholder="Sueldo" >
 					</div>
 				</div>
 				<br><br>
@@ -356,7 +356,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">¿Realiz&oacute; su registro ante el CENEVAL?</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="RegistroCeneval" placeholder="Puntaje CENEVAL" >
+						<input type="text" class="form-control" onchange="isFloat('CENEVAL')" id="CENEVAL" name="RegistroCeneval" placeholder="Puntaje CENEVAL" >
 					</div>
 				</div>
 				<br><br>
@@ -384,24 +384,24 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Contraseña</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+						<input type="password" class="form-control" id="password1" name="Contrasena" placeholder="Contraseña" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Repite contraseña</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+						<input type="password" onchange="showPasswordsAlert()" class="form-control" id="password2" name="" placeholder="Contraseña" >
 					</div>
 				</div>
-			</form>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
 				<a href="#">
-					<button style="width:50%;" align="center" class="btn btn-action" type="submit">Guardar</button>
+					<input style="width:50%;" align="center" class="btn btn-action" value="Guardar" type="submit"></input>
 				</a>
 			</div> <!-- /row  -->
+			</form>
 		</div>
 	</div>
 	<!-- /Highlights -->
