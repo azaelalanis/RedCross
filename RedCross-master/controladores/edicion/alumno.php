@@ -4,6 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
+$matricula = $_POST["matricula"];
 $nombres = $_POST["nombres"];
 $APaterno = $_POST["APaterno"];
 $AMaterno = $_POST["AMaterno"];
@@ -46,10 +47,8 @@ $RegistroCeneval = $_POST["RegistroCeneval"];
 $RegistroEscuela = $_POST["RegistroEscuela"];
 $ExamenPsicometrico = $_POST["ExamenPsicometrico"];
 $Entrevisto = $_POST["Entrevisto"];
-$Contrasena = $_POST["Contrasena"];
 
-$result = mysql_insert("alumno", array(
-	'contra_alumno' => password_hash($Contrasena, PASSWORD_DEFAULT),
+$result = mysql_update("alumno", array(
 	'a_nombre' => $nombres,
 	'a_apellidpaterno' => $APaterno,
 	'a_apellidomaterno' => $AMaterno,
@@ -91,15 +90,17 @@ $result = mysql_insert("alumno", array(
 	'a_ceneval' => $RegistroCeneval,
 	'a_regescuela' => $RegistroEscuela,
 	'a_psicometrico' => $ExamenPsicometrico,
-	'a_entrevista' => $Entrevisto,
-	'a_fecharegistro' => date("Y-m-d") 
+	'a_entrevista' => $Entrevisto
 
-));
-if ($result){
-	$alertMsg = "Nuevo alumno agregado satisfactoriamente";
+), $matricula);
+if (mysql_affected_rows() > 0){
+	$alertMsg = "Alumno actualizado satisfactoriamente";
+}
+elseif (!$result) {
+	$alertMsg = "Algo salio mal: " . mysql_error();
 }
 else{
-	$alertMsg = "Algo salio mal: " . mysql_error();
+	$alertMsg = "No encontramos ningun alumno con la matricula a$matricula";
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");

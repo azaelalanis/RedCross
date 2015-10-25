@@ -30,7 +30,7 @@
 	}
 	
 	$usuario = mysql_escape_string($usuario);
-	$sql="select * from " . $tabla . " where id_" . $tabla . "= $usuario";
+	$sql="select " . "contra_" . $tabla . ", " . $tipo . "_nombre from " . $tabla . " where id_" . $tabla . "= $usuario";
 	$result = mysql_query($sql);
 	while($row = mysql_fetch_array($result)){
 		$password=$row['contra_' . $tabla];

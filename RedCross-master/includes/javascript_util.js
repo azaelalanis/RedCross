@@ -17,6 +17,11 @@ function showPasswordsAlert(){
 
 }
 
+function isValidMatricula(matricula){
+	var patt = /[admADM][0-9]+/i;
+	return patt.test(matricula);
+}
+
 function isFloat(elementId){
 	var number = document.getElementById(elementId);
 	if(isNaN(parseFloat(number.value))){

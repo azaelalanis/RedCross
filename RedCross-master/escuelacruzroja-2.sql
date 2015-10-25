@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 25-10-2015 a las 05:32:32
+-- Tiempo de generación: 25-10-2015 a las 23:16:44
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.5.14
 
@@ -45,7 +45,7 @@ CREATE TABLE `alumno` (
   `a_cp` varchar(16) DEFAULT NULL COMMENT 'codigo postal',
   `a_colonia` varchar(254) DEFAULT NULL COMMENT 'colonia',
   `a_municipio` varchar(254) DEFAULT NULL COMMENT 'municipio',
-  `a_numlocal` int(11) DEFAULT NULL COMMENT 'número local',
+  `a_numlocal` varchar(30) DEFAULT NULL COMMENT 'número local',
   `a_numcelular` int(11) DEFAULT NULL COMMENT 'número celular',
   `a_nompapa` varchar(60) DEFAULT NULL COMMENT 'nombre del papa',
   `a_ocupacionpapa` varchar(60) DEFAULT NULL COMMENT 'nombre de la mama',
@@ -69,7 +69,7 @@ CREATE TABLE `alumno` (
   `a_entrevista` varchar(254) DEFAULT NULL COMMENT 'entrevista realizada',
   `a_email` varchar(60) NOT NULL COMMENT 'correo electronico de alumno',
   `a_fecharegistro` date DEFAULT NULL COMMENT 'fecha en la que se registro el alumno'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=12 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `alumno`
@@ -77,7 +77,7 @@ CREATE TABLE `alumno` (
 
 INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpaterno`, `a_apellidomaterno`, `a_fechanac`, `a_lugarnac`, `a_nacionalidad`, `a_sexo`, `a_estadocivil`, `a_gposanguineo`, `a_rh`, `a_curp`, `a_servmedico`, `a_trabajo`, `a_enfermedades`, `a_alergias`, `a_debilidadmotriz`, `a_domicilio`, `a_numext`, `a_numint`, `a_cp`, `a_colonia`, `a_municipio`, `a_numlocal`, `a_numcelular`, `a_nompapa`, `a_ocupacionpapa`, `a_empresapapa`, `a_sueldopapa`, `a_nommama`, `a_ocupacionmama`, `a_empresamama`, `a_sueldomama`, `a_otrosestudios`, `a_suspencionestudios`, `a_matreprobadas`, `a_aval`, `a_promocionesc`, `a_objcruzroja`, `a_objenfermeria`, `a_otracarrera`, `a_ceneval`, `a_regescuela`, `a_psicometrico`, `a_entrevista`, `a_email`, `a_fecharegistro`) VALUES
 (1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'ariana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'rob', 'apellidopaterno ', 'apellido materno', '2015-01-01', 'gpe', 'México', 'M', 'Soltero', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', 0, NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1000, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', 'entrevista', 'robert_rivmtz@hotmail.com', NULL);
+(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'México', 'M', 'Soltero', 'B+', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.com', NULL);
 
 --
 -- Índices para tablas volcadas
@@ -97,4 +97,4 @@ ALTER TABLE `alumno`
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=12;
+MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=8;
