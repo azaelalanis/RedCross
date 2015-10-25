@@ -150,7 +150,7 @@ include "../../includes/sessionAdmin.php";
 			</div> <!-- /row  -->
 		</div>
 	</div>
-</form>
+	</form>
 	<!-- /Highlights -->
 	<footer id="footer" class="top-space">
 
