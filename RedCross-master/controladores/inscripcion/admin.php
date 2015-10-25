@@ -17,22 +17,22 @@
 	$contrasena = $_POST["Contrasena"];
 
 
-$result = mysql_insert("maestro", array(
-		'contra_maestro' => password_hash($contrasena, PASSWORD_DEFAULT),
-		'm_nombre' => $nombres,
-    'm_apellidopaterno' => $APaterno,
-    'm_apellidomaterno' => $AMaterno,
-		'm_fechanac' => $FechaNacimiento,
-		'm_curp' => $CURP,
-		'm_enfermedades' => $Enfermedades,
-		'm_alergias' => $Alergias,
-		'm_numlocal' => $Telefono,
-		'm_email' => $Email
+$result = mysql_insert("administrador", array(
+		'contra_administrador' => password_hash($contrasena, PASSWORD_DEFAULT),
+		'd_nombre' => $nombres,
+    'd_apellidopaterno' => $APaterno,
+    'd_apellidomaterno' => $AMaterno,
+		'd_fechanac' => $FechaNacimiento,
+		'd_curp' => $CURP,
+		'd_enfermedades' => $Enfermedades,
+		'd_alergias' => $Alergias,
+		'd_numlocal' => $Telefono,
+		'd_email' => $Email
 ));
 
 
 if ($result){
-	$alertMsg = "Nuevo maestro agregado satisfactoriamente";
+	$alertMsg = "Nuevo administrador agregado satisfactoriamente";
 }
 else{
 	$alertMsg = "Algo salio mal: " . mysql_error();
