@@ -15,9 +15,9 @@
 	$Telefono = $_POST["Telefono"];
 	$Email = $_POST["Email"];
 	$contrasena = $_POST["Contrasena1"];
-	$tabla = "maestro";
 
-mysql_insert($tabla, array(
+
+$result = mysql_insert("maestro", array(
 		'contra_maestro' => password_hash($contrasena, PASSWORD_DEFAULT),
 		'm_nombre' => $nombres,
     'm_apellidopaterno' => $APaterno,
@@ -31,11 +31,15 @@ mysql_insert($tabla, array(
 ));
 
 
-
+if ($result){
+	$alertMsg = "Nuevo maestro agregado satisfactoriamente";
+}
+else{
+	$alertMsg = "Algo salio mal: " . mysql_error();
+}
 	echo "<script language=\"javascript\">
-			alert(\"Nuevo maestro agregado satisfactoriamente\");
-			window.location.href = \"../../vistas/menus/menuAdmin.php\"
-		</script>";
-
+				alert(\"$alertMsg\");
+				window.location.href = \"../../vistas/menus/menuAdmin.php\"
+			</script>";
 
 ?>

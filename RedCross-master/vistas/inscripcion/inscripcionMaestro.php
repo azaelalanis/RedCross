@@ -130,7 +130,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Contraseña</label>
 					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
+						<input type="password" class="form-control" id="" name="Contrasena" placeholder="Contraseña" >
 					</div>
 				</div>
 				<br><br>
