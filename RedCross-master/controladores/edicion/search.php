@@ -12,6 +12,9 @@
 	elseif ($tipo == "m"){
 		$tabla = "maestro";
 	}
+	elseif ($tipo == "c") {
+		$tabla = "curso";
+	}
 	else{
 		$tabla = "administrador";
 	}
