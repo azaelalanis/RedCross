@@ -28,14 +28,6 @@ include "../../includes/sessionAdmin.php";
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
 	<script> 
-	function selectOption(select, textOption){
-	for(option in select.options){
-		if(textOption == option.text){
-			option.selected = true;
-			break;
-		}
-	}
-}
 		function search(){
 		var searchId = document.getElementById('searchId').value;
 		if(!isValidMatricula(searchId)){
@@ -48,6 +40,14 @@ include "../../includes/sessionAdmin.php";
 	    xhr.open("GET", url, true);
 	    xhr.send();
 	  }
+	  function validarMatricula(){
+	  	var id = document.getElementById('matricula').value;
+	  	if (!isValidMatricula(id)) {
+	  		alert("Matricula no valida, favor de volver a cargar el alumno");
+	  		return false;
+	  	}
+	  	return true;
+	  }
 	  function fillFields(){
 	    var fields = xhr.responseText.trim();
 	    var arrayFields = fields.split("|");
@@ -55,7 +55,7 @@ include "../../includes/sessionAdmin.php";
 	    	alert(arrayFields[1]);
 	    	return;
 	    }
-	    document.getElementById('matricula').value = arrayFields[1];
+	    document.getElementById('matricula').value = 'a' + arrayFields[1];
 	    document.getElementById('nombres').value = arrayFields[3];
 	    document.getElementById('APaterno').value = arrayFields[4];
 	    document.getElementById('AMaterno').value = arrayFields[5];
@@ -142,7 +142,7 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<form method="post" action="../../controladores/edicion/alumno.php">
+				<form method="post" onsubmit="return validarMatricula()" action="../../controladores/edicion/alumno.php">
 					<input type="hidden"  id="matricula" name="matricula" value="">
 				<!-- CURP del alumno -->
 				<div class="form-group">

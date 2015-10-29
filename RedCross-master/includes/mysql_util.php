@@ -10,13 +10,13 @@ function mysql_update($table, $inserts, $matricula) {
     $values = array_map('mysql_real_escape_string', array_values($inserts));
     $keys = array_keys($inserts);
    	$sql = "UPDATE $table SET ";
-   	for ($i = 0; $i <= count($keys); $i++) {
+   	for ($i = 0; $i < count($keys); $i++) {
     	$sql = $sql . " " . $keys[$i] . "='" . $values[$i] ."'";
     	if($i < count($keys)-1){
     		$sql = $sql . ", ";
     	}  
 	}
-	$sql = $sql . " WHERE id_" . $table . "=" . $matricula; 
+	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
     return mysql_query($sql);
 }
 ?>

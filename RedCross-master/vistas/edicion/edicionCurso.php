@@ -17,7 +17,7 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
+	<script src="../../includes/javascript_util.js"></script>
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -27,6 +27,35 @@ include "../../includes/sessionAdmin.php";
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+	<script> 
+		function search(){
+		var searchId = document.getElementById('searchId').value;
+		if(!isInt("searchId")){
+			return;
+		}
+		searchId = "c" + searchId;
+	    xhr=new XMLHttpRequest();
+	    xhr.onload= fillFields;
+	    var url="../../controladores/edicion/search.php?matricula=" + searchId;
+	    xhr.open("GET", url, true);
+	    xhr.send();
+	  }
+	  function fillFields(){
+	    var fields = xhr.responseText.trim();
+	    var arrayFields = fields.split("|");
+	    if(arrayFields[0] == "-1"){
+	    	alert(arrayFields[1]);
+	    	return;
+	    }
+	    document.getElementById('matricula').value = arrayFields[1];
+	    document.getElementById('semestre').value = arrayFields[2];
+	    document.getElementById('nombre').value = arrayFields[3];
+	    document.getElementById('objetivoCurso').value = arrayFields[4];
+	    document.getElementById('unidades').value = arrayFields[5];
+
+	    
+	  }
+	</script>
 </head>
 
 <body class="home">
@@ -42,12 +71,12 @@ include "../../includes/sessionAdmin.php";
 				</button>
 				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
-			<form class="navbar-form navbar-left" role="search">
+			<div class="navbar-form navbar-left" >
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Ingresar ID">
+					<input type="text" class="form-control" id="searchId" name="searchId" placeholder="Ingresar ID">
 				</div>
-				<button type="submit" class="btn btn-default">Buscar</button>
-			</form>
+				<button onclick="search()" class="btn btn-default">Buscar</button>
+			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="menuAdmin.html">Regresar</a></li>
@@ -67,32 +96,34 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
+			<form method="post" onsubmit="return isInt('searchId')" action="../../controladores/edicion/curso.php">
+				<input type="hidden"  id="matricula" name="matricula" value="">
 				<!-- CURP del alumno -->
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Semestre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Semestre" >
+						<input type="text" class="form-control" onchange="isInt('semestre')" id="semestre" name="semestre" placeholder="Semestre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre del curso" >
+						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">Objetivo del curso</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso"></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Unidades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Unidades del curso" >
+						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" >
 					</div>
 				</div>
 			</div> <!-- /row  -->
@@ -101,8 +132,9 @@ include "../../includes/sessionAdmin.php";
 				<a href="#">
 					<button style="width:100%;" class="btn btn-action" type="submit">Guardar</button>
 				</a>
+			</form>
 				<br><br>
-				<a href="#">
+				<a href="../../vistas/menus/menuAdmin.php">
 					<button style="width:100%;" class="btn btn-action" type="submit">Cancelar</button>
 				</a>
 			</div>
