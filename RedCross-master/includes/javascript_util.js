@@ -17,21 +17,47 @@ function showPasswordsAlert(){
 
 }
 
+function selectOption(select, textOption){
+	for(option in select.options){
+		if(textOption == option.text){
+			option.selected = true;
+			break;
+		}
+	}
+}
+
 function isValidMatricula(matricula){
-	var patt = /[admADM][0-9]+/i;
+	var patt = /^[admADM][0-9]+$/i;
 	return patt.test(matricula);
 }
 
 function isFloat(elementId){
 	var number = document.getElementById(elementId);
-	if(isNaN(parseFloat(number.value))){
+	var regex = /^[0-9]*\.?[0-9]+$/i;
+	if(!regex.test(number.value)){
 		alert('Favor de ingresar un numero valido');
 		number.style.backgroundColor = "red";
 	}
 	else{
 		number.style.backgroundColor = "";
 	}
+}
 
+function isInt(elementId){
+	var number = document.getElementById(elementId);
+	var regex = /^[0-9]+$/i;
+	if(!regex.test(number.value)){
+		alert('Favor de ingresar un numero valido');
+		number.style.backgroundColor = "red";
+		return false;
+	}
+	else{
+		number.style.backgroundColor = "";
+		return true;
+	}
+}
+
+<<<<<<< HEAD
 }
 
 
@@ -75,3 +101,5 @@ function get_action(form) {
 		*/
 	}
 }
+=======
+>>>>>>> f08ba97b2b5490d3b07fce722aef5a45d7bd0aa6

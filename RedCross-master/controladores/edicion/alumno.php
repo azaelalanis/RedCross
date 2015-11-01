@@ -4,7 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
-$matricula = $_POST["matricula"];
+$matricula = substr($_POST["matricula"], 1);;
 $nombres = $_POST["nombres"];
 $APaterno = $_POST["APaterno"];
 $AMaterno = $_POST["AMaterno"];
@@ -93,6 +93,7 @@ $result = mysql_update("alumno", array(
 	'a_entrevista' => $Entrevisto
 
 ), $matricula);
+
 if (mysql_affected_rows() > 0){
 	$alertMsg = "Alumno actualizado satisfactoriamente";
 }
@@ -100,7 +101,7 @@ elseif (!$result) {
 	$alertMsg = "Algo salio mal: " . mysql_error();
 }
 else{
-	$alertMsg = "No encontramos ningun alumno con la matricula a$matricula";
+	$alertMsg = "No encontramos ningun alumno con la matricula a$matricula o no hubo cambios en la informacion";
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");

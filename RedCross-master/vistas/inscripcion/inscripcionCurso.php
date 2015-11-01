@@ -17,7 +17,7 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
-
+	<script src="../../includes/javascript_util.js"></script>
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -62,32 +62,32 @@ include "../../includes/sessionAdmin.php";
 	<div class="">
 		<div class="container">
 			<div class="row">
-				<!-- CURP del alumno -->
+				<form method="post" action="../../controladores/inscripcion/curso.php">
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Semestre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Semestre" >
+						<input type="text" class="form-control" onchange="isInt('semestre')" id="semestre" name="semestre" placeholder="Semestre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Nombre del curso" >
+						<input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del curso" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="textArea" class="col-lg-2 control-label">Objetivo del curso</label>
 					<div class="col-lg-10">
-						<textarea class="form-control" rows="3" id="textArea"></textarea>
+						<textarea class="form-control" rows="3" id="objetivoCurso" name="objetivoCurso"></textarea>
 					</div>
 				</div>
 				<br><br><br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Unidades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="" placeholder="Unidades del curso" >
+						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" >
 					</div>
 				</div>
 			</div> <!-- /row  -->
@@ -97,6 +97,7 @@ include "../../includes/sessionAdmin.php";
 					<button style="width:50%;" align="center" class="btn btn-action" type="submit">Guardar</button>
 				</a>
 			</div> <!-- /row  -->
+		</form>
 		</div>
 	</div>
 	<!-- /Highlights -->
