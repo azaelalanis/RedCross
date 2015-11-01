@@ -9,11 +9,11 @@ include "../../includes/sessionAdmin.php";
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Men&uacute;</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -21,6 +21,7 @@ include "../../includes/sessionAdmin.php";
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script src="../../includes/javascript_util.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -45,7 +46,7 @@ include "../../includes/sessionAdmin.php";
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
-	</div> 
+	</div>
 	<!-- /.navbar -->
 
 	<header id="head" class="secondary"></header>
@@ -54,34 +55,34 @@ include "../../includes/sessionAdmin.php";
 	<div class="container">
 
 		<div class="row">
-			
+
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-					<a href="../inscripcion/inscripcionAlumno.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Alumnos">
-					</a>
+						<form onsubmit="get_action(this);" >
+						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Alumnos">
+						</form>
 				</div>
 				<br>
 				<div>
-					<a href="../inscripcion/inscripcionMaestro.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Maestros">
-					</a>
+					<form onsubmit="get_action(this);" >
+						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Maestros">
+					</form>
 				</div>
 				<br>
 				<div>
-					<a href="../inscripcion/inscripcionCurso.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos">
-					</a>
+					<form onsubmit="get_action(this);" >
+						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Cursos">
+					</form>
 				</div>
 				<br>
 				<div>
-					<a href="../inscripcion/inscripcionAdmin.php">
-						<input class="btn btn-action" style="width:100%;" type="submit" value="Administradores">
-					</a>
+					<form onsubmit="get_action(this);" >
+						<input class="btn btn-action" style="width:100%;" type="submit" id="Display" value="Administradores">
+					</form>
 				</div>
 				<br>
 				<div>
@@ -92,7 +93,7 @@ include "../../includes/sessionAdmin.php";
 				<br>
 			</article>
 			<!-- /Article -->
-			
+
 			<!-- Sidebar -->
 			<aside class="col-sm-3 sidebar sidebar-right">
 
@@ -101,29 +102,31 @@ include "../../includes/sessionAdmin.php";
 					<address>
 						Usted ha ingresado como administrador, por favor seleccione la opci&oacute;n que requiera.
 					</address>
+
 					<div class="radio">
 						<label>
-							<input type="radio" name="options" id="opcionInscribir" value="inscribir" checked="true">
+							<input type="radio" name="options"  id="inscribir" value="inscribir" checked="true">
 							Dar de alta
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="options" id="opcionEditar" value="editar">
+							<input type="radio" name="options" id="editar" value="editar">
 							Editar
 						</label>
 					</div>
 					<div class="radio">
 						<label>
-							<input type="radio" name="options" id="opcionBaja" value="baja">
+							<input type="radio" name="options" id="baja" value="baja">
 							Dar de baja
 						</label>
 					</div>
+
 				</div>
 			</div>
 
-		</aside>
-		<!-- /Sidebar -->
+			</aside>
+			<!-- /Sidebar -->
 
 	</div>
 </div>	<!-- /container -->
@@ -141,7 +144,7 @@ include "../../includes/sessionAdmin.php";
 						<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 							<a href="mailto:#">cruz.roja@cr.com</a><br>
 							81-1477-1477
-						</p>	
+						</p>
 					</div>
 				</div>
 
@@ -151,7 +154,7 @@ include "../../includes/sessionAdmin.php";
 						<p class="follow-me-icons clearfix">
 							<a href=""><i class="fa fa-twitter fa-2"></i></a>
 							<a href=""><i class="fa fa-facebook fa-2"></i></a>
-						</p>	
+						</p>
 					</div>
 				</div>
 
@@ -173,7 +176,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="col-md-6 widget">
 					<div class="widget-body">
 						<p class="simplenav">
-							<a href="#">Home</a> | 
+							<a href="#">Home</a> |
 							<a href="#">Contacto</a> |
 							<b><a href="#">Iniciar sesi&oacute;n</a></b>
 						</p>
@@ -183,7 +186,7 @@ include "../../includes/sessionAdmin.php";
 				<div class="col-md-6 widget">
 					<div class="widget-body">
 						<p class="text-right">
-							Copyright &copy; 2015, Cruz Roja. 
+							Copyright &copy; 2015, Cruz Roja.
 						</p>
 					</div>
 				</div>
@@ -205,7 +208,7 @@ include "../../includes/sessionAdmin.php";
 <script src="assets/js/template.js"></script>
 
 <!-- Google Maps -->
-<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
+<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script>
 <script src="assets/js/google-map.js"></script>
 
 
