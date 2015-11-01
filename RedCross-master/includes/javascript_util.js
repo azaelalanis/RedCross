@@ -2,7 +2,7 @@ function checkPasswords(){
 	var password1 = document.getElementById('password1').value;
 	var password2 = document.getElementById('password2').value;
 	return password1 != "" && password2 != "" && password1 == password2;
-	
+
 }
 
 function showPasswordsAlert(){
@@ -32,4 +32,46 @@ function isFloat(elementId){
 		number.style.backgroundColor = "";
 	}
 
+}
+
+
+function get_action(form) {
+
+	var display = form['Display'].value;
+
+	if(document.getElementById('inscribir').checked){
+		switch(display){
+			case "Alumnos":
+				form.action = '../inscripcion/inscripcionAlumno.php';
+				break;
+			case "Maestros":
+				form.action = '../inscripcion/inscripcionMaestro.php';
+				break;
+			case "Cursos":
+				form.action = '../inscripcion/inscripcionCurso.php';
+				break;
+			case "Administradores":
+				form.action = '../inscripcion/inscripcionAdmin.php';
+				break;
+		}
+	}else if (document.getElementById('editar').checked) {
+		switch(display){
+			case "Alumnos":
+				form.action = '../edicion/edicionAlumno.php';
+				break;
+			case "Maestros":
+				form.action = '../edicion/edicionMaestro.php';
+				break;
+			case "Cursos":
+				form.action = '../edicion/edicionCurso.php';
+				break;
+			case "Administradores":
+				form.action = '../edicion/edicionAdmin.php';
+				break;
+		}
+	} else if (document.getElementById('baja').checked) {
+		/*
+
+		*/
+	}
 }
