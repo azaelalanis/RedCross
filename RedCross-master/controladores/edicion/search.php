@@ -5,7 +5,7 @@
 
 	$tipo = strtolower(substr($_GET["matricula"], 0, 1));
 	$matricula=substr($_GET["matricula"], 1);
-	
+
 	if($tipo == "a"){
 		$tabla = "alumno";
 	}
@@ -27,7 +27,7 @@
 	foreach ($row as $col_value) {
     	$response = $response . '|' . $col_value;
 	}
-	
+
 	if($response == ""){
 		echo '-1|No encontramos nada con la matricula ' . $tipo . $matricula;
 	}

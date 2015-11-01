@@ -27,7 +27,23 @@ include "../../includes/sessionAdmin.php";
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+<<<<<<< HEAD
 	<script>
+=======
+<<<<<<< HEAD
+	<script>
+	function selectOption(select, textOption){
+	for(option in select.options){
+		if(textOption == option.text){
+			option.selected = true;
+			break;
+		}
+	}
+}
+=======
+	<script> 
+>>>>>>> f08ba97b2b5490d3b07fce722aef5a45d7bd0aa6
+>>>>>>> 9d99fc0d367a71f5a104ae4db0fd9fec9b206cc5
 		function search(){
 		var searchId = document.getElementById('searchId').value;
 		if(!isValidMatricula(searchId)){
@@ -100,6 +116,10 @@ include "../../includes/sessionAdmin.php";
 	    document.getElementById('Email').value = arrayFields[48];
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9d99fc0d367a71f5a104ae4db0fd9fec9b206cc5
 	  }
 	</script>
 </head>

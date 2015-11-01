@@ -9,11 +9,11 @@ include "../../includes/sessionAdmin.php";
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -30,7 +30,7 @@ include "../../includes/sessionAdmin.php";
 </head>
 
 <body class="home">
-	
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -417,7 +417,7 @@ include "../../includes/sessionAdmin.php";
 							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 								<a href="mailto:#">cruz.roja@cr.com</a><br>
 								81-1477-1477
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -427,7 +427,7 @@ include "../../includes/sessionAdmin.php";
 							<p class="follow-me-icons clearfix">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -449,7 +449,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="#">Home</a> |
 								<a href="#">Contacto</a> |
 								<b><a href="#">Iniciar sesi&oacute;n</a></b>
 							</p>
@@ -459,7 +459,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
+								Copyright &copy; 2015, Cruz Roja.
 							</p>
 						</div>
 					</div>
@@ -467,7 +467,7 @@ include "../../includes/sessionAdmin.php";
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
+	</footer>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
