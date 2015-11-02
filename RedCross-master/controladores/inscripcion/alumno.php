@@ -95,8 +95,11 @@ $result = mysql_insert("alumno", array(
 	'a_fecharegistro' => date("Y-m-d") 
 
 ));
+
+$newId = mysql_insert_id();
+
 if ($result){
-	$alertMsg = "Nuevo alumno agregado satisfactoriamente";
+	$alertMsg = "Nuevo alumno agregado satisfactoriamente con matricula: a$newId";
 }
 else{
 	$alertMsg = "Algo salio mal: " . mysql_error();
