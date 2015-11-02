@@ -15,7 +15,7 @@ $result = mysql_insert("curso", array(
 	'id_semestre' => $semestre,
 	'cu_objetivo' => $objetivoCurso,
 	'cu_numunidades' => $unidades,
-	'cu_fecharegistro' => date("Y-m-d") 
+	'cu_fecharegistro' => date("Y-m-d")
 
 ));
 if ($result){
