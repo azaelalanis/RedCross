@@ -125,8 +125,8 @@ include "../../includes/sessionAdmin.php";
 				</div>
 			</div>
 
-		</aside>
-		<!-- /Sidebar -->
+			</aside>
+			<!-- /Sidebar -->
 
 	</div>
 </div>	<!-- /container -->
