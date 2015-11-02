@@ -24,7 +24,7 @@ elseif (!$result) {
 	$alertMsg = "Algo salio mal: " . mysql_error();
 }
 else{
-	$alertMsg = "No encontramos ningun curso con la matricula $matricula";
+	$alertMsg = "No encontramos ningun curso con la matricula $matricula o no hubo cambios en la información";
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
