@@ -57,16 +57,6 @@ function isInt(elementId){
 	}
 }
 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-}
-
-
->>>>>>> 9d99fc0d367a71f5a104ae4db0fd9fec9b206cc5
->>>>>>> 743185915d7d6b8be478723088f49076ef53e364
 function get_action(form) {
 
 	var display = form['Display'].value;
@@ -107,11 +97,3 @@ function get_action(form) {
 		*/
 	}
 }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> f08ba97b2b5490d3b07fce722aef5a45d7bd0aa6
->>>>>>> 9d99fc0d367a71f5a104ae4db0fd9fec9b206cc5
->>>>>>> 743185915d7d6b8be478723088f49076ef53e364

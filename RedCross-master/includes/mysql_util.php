@@ -17,10 +17,7 @@ function mysql_update($table, $inserts, $matricula) {
     	}
 	}
 	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
-<<<<<<< HEAD
 
-=======
->>>>>>> f08ba97b2b5490d3b07fce722aef5a45d7bd0aa6
     return mysql_query($sql);
 }
 ?>
