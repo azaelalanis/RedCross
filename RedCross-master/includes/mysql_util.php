@@ -14,9 +14,10 @@ function mysql_update($table, $inserts, $matricula) {
     	$sql = $sql . " " . $keys[$i] . "='" . $values[$i] ."'";
     	if($i < count($keys)-1){
     		$sql = $sql . ", ";
-    	}  
+    	}
 	}
 	$sql = $sql . " WHERE id_" . $table . "=" . $matricula;
+
     return mysql_query($sql);
 }
 ?>

@@ -21,12 +21,60 @@ include "../../includes/sessionAdmin.php";
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script src="../../includes/javascript_util.js"></script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
 	<script src="assets/js/respond.min.js"></script>
 	<![endif]-->
+
+	<script>
+	function selectOption(select, textOption){
+	for(option in select.options){
+		if(textOption == option.text){
+			option.selected = true;
+			break;
+		}
+	}
+	}
+		function search(){
+		var searchId = document.getElementById('searchId').value;
+		console.log(searchId);
+		if(!isValidMatricula(searchId)){
+			alert("Favor de ingresar una matricula valida");
+			return;
+		}
+			xhr=new XMLHttpRequest();
+			xhr.onload= fillFields;
+			var url="../../controladores/edicion/search.php?matricula=" + searchId;
+			xhr.open("GET", url, true);
+			xhr.send();
+		}
+		function fillFields(){
+			//alert(xhr.responseText);
+			//console.log(xhr.responseText);
+			var fields = xhr.responseText.trim();
+			var arrayFields = fields.split("|");
+			if(arrayFields[0] == "-1"){
+				alert(arrayFields[1]);
+				return;
+			}
+
+
+			document.getElementById('matricula').value = arrayFields[1];
+			document.getElementById('nombres').value = arrayFields[3];
+			document.getElementById('APaterno').value = arrayFields[4];
+			document.getElementById('AMaterno').value = arrayFields[5];
+			document.getElementById('FechaNacimiento').value = arrayFields[6];
+			document.getElementById('CURP').value = arrayFields[14];
+			document.getElementById('Enfermedades').value = arrayFields[17];
+			document.getElementById('Alergias').value = arrayFields[18];
+			document.getElementById('Telefono').value = arrayFields[26];
+			document.getElementById('Email').value = arrayFields[30];
+
+		}
+	</script>
 </head>
 
 <body class="home">
@@ -42,11 +90,11 @@ include "../../includes/sessionAdmin.php";
 				</button>
 				<a class="navbar-brand" href="#">Edici&oacute;n</a>
 			</div>
-			<form class="navbar-form navbar-left" role="search">
+			<form class="navbar-form navbar-left" role="search" onSubmit="return false;">
 				<div class="form-group">
-					<input type="text" class="form-control" placeholder="Ingresar ID">
+					<input type="text" id="searchId" class="form-control" placeholder="Ingresar ID">
 				</div>
-				<button type="submit" class="btn btn-default">Buscar</button>
+				<button onclick="search()" class="btn btn-default">Buscar</button>
 			</form>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -64,7 +112,8 @@ include "../../includes/sessionAdmin.php";
 	<!-- /Intro-->
 
 	<!-- Highlights - jumbotron -->
-	<form action="../../controladores/inscripcion/maestro.php" method="post">
+	<form method="post" action="../../controladores/edicion/maestro.php">
+		<input type="hidden"  id="matricula" name="matricula" value="">
 	<div class="">
 		<div class="container">
 			<div class="row">
@@ -72,79 +121,66 @@ include "../../includes/sessionAdmin.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre(s)</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="nombres" placeholder="Nombre" >
+						<input type="text" class="form-control" id="nombres" name="nombres" placeholder="Nombre" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Paterno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="APaterno" placeholder="Apellido Paterno" >
+							<input type="text" class="form-control" id="APaterno" name="APaterno" placeholder="Apellido Paterno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Apellido Materno</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="AMaterno" placeholder="Apellido Materno" >
+						<input type="text" class="form-control" id="AMaterno" name="AMaterno" placeholder="Apellido Materno" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Fecha Nacimiento</label>
 					<div class="col-lg-10">
-						<input type="date" class="form-control" id="" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
+						<input type="date" class="form-control" id="FechaNacimiento" name="FechaNacimiento" placeholder="dd/mm/aaaa" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">CURP</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="CURP" placeholder="CURP" >
+						<input type="text" class="form-control" id="CURP" name="CURP" placeholder="CURP" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Enfermedades</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="Enfermedades" placeholder="Liste enfermedades que padece" >
+						<input type="text" class="form-control" id="Enfermedades" name="Enfermedades" placeholder="Liste enfermedades que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Alergias</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="Alergias" placeholder="Liste alergias que padece" >
+						<input type="text" class="form-control" id="Alergias" name="Alergias" placeholder="Liste alergias que padece" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Tel&eacute;fono local o celular</label>
 					<div class="col-lg-10">
-						<input type="text" class="form-control" id="" name="Telefono" placeholder="Tel&eacute;fono" >
+						<input type="text" class="form-control" id="Telefono" name="Telefono" placeholder="Tel&eacute;fono" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
-						<input type="email" class="form-control" id="" name="Email" placeholder="Email" >
+						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" >
 					</div>
 				</div>
 				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Contraseña</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
-					</div>
-				</div>
-				<br><br>
-				<div class="form-group">
-					<label for="" class="col-lg-2 control-label">Repite contraseña</label>
-					<div class="col-lg-10">
-						<input type="password" class="form-control" id="" name="" placeholder="Contraseña" >
-					</div>
-				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="col-lg-12 text-right">
