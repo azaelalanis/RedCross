@@ -33,7 +33,7 @@ elseif (!$result) {
 	$alertMsg = "Algo salio mal: " . mysql_error();
 }
 else{
-	$alertMsg = "No encontramos ningun maestro con la matricula m$matricula";
+	$alertMsg = "No encontramos ningun maestro con la matricula m$matricula o no hubo cambios en la informacion";
 }
 	echo "<script language=\"javascript\">
 				alert(\"$alertMsg\");
