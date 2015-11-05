@@ -18,12 +18,22 @@ function showPasswordsAlert(){
 }
 
 function selectOption(select, textOption){
-	for(option in select.options){
-		if(textOption == option.text){
-			option.selected = true;
+	for(i = 0; i < select.length; i++){
+		if(textOption == select[i].value){
+			select[i].selected = true;
 			break;
 		}
 	}
+}
+
+function markCheckBoxes(idsStr){
+  	var dias = idsStr.split(",");
+  	for (var i = dias.length - 1; i >= 0; i--) {
+  		var checkbox = document.getElementById(dias[i]);
+  		if(checkbox !== null && typeof checkbox !== "undefined"){
+  			checkbox.checked = true;
+  		}
+  	}
 }
 
 function isValidMatricula(matricula){

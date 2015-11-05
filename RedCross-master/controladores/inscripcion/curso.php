@@ -8,6 +8,16 @@ $semestre = $_POST["semestre"];
 $nombre = $_POST["nombre"];
 $objetivoCurso = $_POST["objetivoCurso"];
 $unidades = $_POST["unidades"];
+$dias = "";
+$horaInicio = $_POST["horaInicio"];
+$horaFinal = $_POST["horaTerminacion"];
+if(isset($_POST['dias'])){
+    foreach($_POST['dias'] as $dia){
+        $dias = $dias . ",". $dia;
+    }
+}
+$isPrioridadAlta = $_POST['isPrioridadAlta'];
+$lugar = $_POST['lugar'];
 
 
 $result = mysql_insert("curso", array(
@@ -15,11 +25,17 @@ $result = mysql_insert("curso", array(
 	'id_semestre' => $semestre,
 	'cu_objetivo' => $objetivoCurso,
 	'cu_numunidades' => $unidades,
-	'cu_fecharegistro' => date("Y-m-d")
+	'cu_fecharegistro' => date("Y-m-d"),
+	'cu_horaInicio' => $horaInicio,
+	'cu_horaFinal' => $horaFinal,
+	'cu_dias' => $dias,
+	'cu_isPrioridadAlta' => $isPrioridadAlta,
+	'cu_aula' => $lugar
 
 ));
 if ($result){
-	$alertMsg = "Nuevo curso agregado satisfactoriamente";
+	$newId = mysql_insert_id();
+	$alertMsg = "Nuevo curso agregado satisfactoriamente con matricula $newId";
 }
 else{
 	$alertMsg = "Algo salio mal: " . mysql_error();

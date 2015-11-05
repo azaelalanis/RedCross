@@ -47,6 +47,9 @@ $RegistroCeneval = $_POST["RegistroCeneval"];
 $RegistroEscuela = $_POST["RegistroEscuela"];
 $ExamenPsicometrico = $_POST["ExamenPsicometrico"];
 $Entrevisto = $_POST["Entrevisto"];
+$CelularPadre = $_POST["celularPadre"];
+$CelularMadre = $_POST["celularMadre"];
+$Estatus = $_POST["Estatus"];
 
 $result = mysql_update("alumno", array(
 	'a_nombre' => $nombres,
@@ -90,7 +93,10 @@ $result = mysql_update("alumno", array(
 	'a_ceneval' => $RegistroCeneval,
 	'a_regescuela' => $RegistroEscuela,
 	'a_psicometrico' => $ExamenPsicometrico,
-	'a_entrevista' => $Entrevisto
+	'a_entrevista' => $Entrevisto,
+	'a_celPadre' => $CelularPadre,
+	'a_celMadre' => $CelularMadre,
+	'a_estatus' => $Estatus
 
 ), $matricula);
 

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 05-11-2015 a las 01:03:36
+-- Tiempo de generación: 05-11-2015 a las 07:52:46
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.5.14
 
@@ -120,7 +120,7 @@ CREATE TABLE `alumno` (
   `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `alumno`
@@ -128,9 +128,10 @@ CREATE TABLE `alumno` (
 
 INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpaterno`, `a_apellidomaterno`, `a_fechanac`, `a_lugarnac`, `a_nacionalidad`, `a_sexo`, `a_estadocivil`, `a_gposanguineo`, `a_rh`, `a_curp`, `a_servmedico`, `a_trabajo`, `a_enfermedades`, `a_alergias`, `a_debilidadmotriz`, `a_domicilio`, `a_numext`, `a_numint`, `a_cp`, `a_colonia`, `a_municipio`, `a_numlocal`, `a_numcelular`, `a_nompapa`, `a_ocupacionpapa`, `a_empresapapa`, `a_sueldopapa`, `a_nommama`, `a_ocupacionmama`, `a_empresamama`, `a_sueldomama`, `a_otrosestudios`, `a_suspencionestudios`, `a_matreprobadas`, `a_aval`, `a_promocionesc`, `a_objcruzroja`, `a_objenfermeria`, `a_otracarrera`, `a_ceneval`, `a_regescuela`, `a_psicometrico`, `a_entrevista`, `a_email`, `a_fecharegistro`, `a_estatus`, `a_celPadre`, `a_celMadre`) VALUES
 (1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'ariana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', ''),
-(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'MÃ©xico', 'M', 'Soltero', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.comasdsd', NULL, '', '', ''),
+(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'MÃ©xico', 'M', 'Divorciado', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.comasdsd', NULL, 'Baja definitiva', 'celPadre', 'celMadre'),
 (8, '$2y$10$hoBA7bStal8ouWspyseOlO8m68uNQGC9V/0k6566ZUlVZUd2Hpafa', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', ''),
-(9, '$2y$10$Qa.euWZVHDF3MOZFEfSGne/k579ROOEP.4TBXKCLEvNyEr9kvyX4i', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', '');
+(9, '$2y$10$Qa.euWZVHDF3MOZFEfSGne/k579ROOEP.4TBXKCLEvNyEr9kvyX4i', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', ''),
+(10, '$2y$10$L6hM8imRNDu1iIt1pKhbRezNV4r12niosemQVBoP7.ZCSUE4HEjXm', 'prueba celular', '', '', '0000-00-00', '', '', 'M', 'Soltero', 'O', '', '', 'no', 'soy nini', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-11-05', 'Activo', 'celular padre', 'celular madre');
 
 -- --------------------------------------------------------
 
@@ -146,17 +147,20 @@ CREATE TABLE `curso` (
   `cu_numunidades` int(11) DEFAULT NULL COMMENT 'unidades correspondientes al curso',
   `cu_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro del curso',
   `cu_aula` varchar(50) NOT NULL,
-  `cu_dias` varchar(50) NOT NULL,
-  `cu_hora` time NOT NULL,
-  `cu_isPrioridadAlta` tinyint(1) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `cu_dias` varchar(60) NOT NULL,
+  `cu_horaInicio` time NOT NULL,
+  `cu_isPrioridadAlta` varchar(2) NOT NULL,
+  `cu_horaFinal` time NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_hora`, `cu_isPrioridadAlta`) VALUES
-(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', 0);
+INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_horaInicio`, `cu_isPrioridadAlta`, `cu_horaFinal`) VALUES
+(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', '0', '00:00:00'),
+(2, 9, 'integrador', 'alksdlanl', 0, '2015-11-05', 'aulas3', ',Lunes,Martes,Miercoles,Jueves,Viernes,Sabado', '15:59:00', 'Si', '00:00:00'),
+(3, 23, 'curso', 'objetivo', 0, '2015-11-05', 'aulas4', ',Lunes,Miercoles,Viernes', '14:00:00', 'Si', '13:00:00');
 
 -- --------------------------------------------------------
 
@@ -321,12 +325,12 @@ MODIFY `id_administrador` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del admin'
 -- AUTO_INCREMENT de la tabla `alumno`
 --
 ALTER TABLE `alumno`
-MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=10;
+MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=2;
+MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `faltaslog`
 --

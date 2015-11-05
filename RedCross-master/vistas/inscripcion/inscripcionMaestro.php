@@ -129,6 +129,13 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Estudios y experiencia profesional</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="estudios" name="estudios" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Contraseña</label>
 					<div class="col-lg-10">
 						<input type="password" class="form-control" id="password1" name="Contrasena" placeholder="Contraseña" >

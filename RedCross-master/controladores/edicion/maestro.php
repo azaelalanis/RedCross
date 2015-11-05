@@ -14,6 +14,7 @@ $Enfermedades = $_POST["Enfermedades"];
 $Alergias = $_POST["Alergias"];
 $Telefono = $_POST["Telefono"];
 $Email = $_POST["Email"];
+$estudios = $_POST["estudios"];
 
 $result = mysql_update("maestro", array(
 	'm_nombre' => $nombres,
@@ -24,8 +25,11 @@ $result = mysql_update("maestro", array(
 	'm_enfermedades' => $Enfermedades,
 	'm_alergias' => $Alergias,
 	'm_numlocal' => $Telefono,
-	'm_email' => $Email
+	'm_email' => $Email,
+	'm_estudios' => $estudios
+
 ), $matricula);
+
 if (mysql_affected_rows() > 0){
 	$alertMsg = "Maestro actualizado satisfactoriamente";
 }

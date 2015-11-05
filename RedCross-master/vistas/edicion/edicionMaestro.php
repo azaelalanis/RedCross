@@ -72,6 +72,7 @@ include "../../includes/sessionAdmin.php";
 			document.getElementById('Alergias').value = arrayFields[18];
 			document.getElementById('Telefono').value = arrayFields[26];
 			document.getElementById('Email').value = arrayFields[30];
+			document.getElementById('estudios').value = arrayFields[32];
 
 		}
 	</script>
@@ -178,6 +179,13 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">Email</label>
 					<div class="col-lg-10">
 						<input type="email" class="form-control" id="Email" name="Email" placeholder="Email" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Estudios y experiencia profesional</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="estudios" name="estudios" >
 					</div>
 				</div>
 				<br><br>
