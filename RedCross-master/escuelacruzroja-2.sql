@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.5
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 05-11-2015 a las 01:03:36
+-- Servidor: localhost
+-- Tiempo de generación: 05-11-2015 a las 04:52:59
 -- Versión del servidor: 5.5.38
--- Versión de PHP: 5.5.14
+-- Versión de PHP: 5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `escuelacruzroja`
@@ -52,7 +58,7 @@ CREATE TABLE `administrador` (
   `d_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `d_email` varchar(60) NOT NULL COMMENT 'correo electronico del administrador',
   `d_fecharegistro` date DEFAULT NULL COMMENT 'fecha en el que se registro'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -120,7 +126,7 @@ CREATE TABLE `alumno` (
   `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno';
 
 --
 -- Volcado de datos para la tabla `alumno`
@@ -149,7 +155,7 @@ CREATE TABLE `curso` (
   `cu_dias` varchar(50) NOT NULL,
   `cu_hora` time NOT NULL,
   `cu_isPrioridadAlta` tinyint(1) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `curso`
@@ -169,7 +175,7 @@ CREATE TABLE `faltaslog` (
   `id_alumno` int(11) DEFAULT NULL COMMENT 'id del alumno',
   `id_curso` int(11) DEFAULT NULL COMMENT 'id del curso',
   `f_fecharegistro` date DEFAULT NULL COMMENT 'fecha de falta'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -185,6 +191,9 @@ CREATE TABLE `inscritos` (
   `inscr_dia` varchar(16) DEFAULT NULL COMMENT 'dia del curso',
   `inscr_asistencia` int(11) DEFAULT NULL COMMENT 'total de faltas',
   `inscr_calificacion` int(11) DEFAULT NULL COMMENT 'calificación final del curso',
+  `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
+  `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
+  `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
   `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -227,7 +236,7 @@ CREATE TABLE `maestro` (
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
   `m_estudios` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `maestro`
@@ -260,7 +269,7 @@ CREATE TABLE `semestre` (
 `id_semestre` int(11) NOT NULL COMMENT 'id del semestre',
   `s_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
   `s_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -342,3 +351,6 @@ MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT
 --
 ALTER TABLE `semestre`
 MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre';
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
