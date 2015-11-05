@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.2.5
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 02-11-2015 a las 19:59:38
+-- Servidor: localhost:8889
+-- Tiempo de generación: 05-11-2015 a las 01:03:36
 -- Versión del servidor: 5.5.38
--- Versión de PHP: 5.6.2
+-- Versión de PHP: 5.5.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `escuelacruzroja`
@@ -58,7 +52,7 @@ CREATE TABLE `administrador` (
   `d_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `d_email` varchar(60) NOT NULL COMMENT 'correo electronico del administrador',
   `d_fecharegistro` date DEFAULT NULL COMMENT 'fecha en el que se registro'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -122,18 +116,21 @@ CREATE TABLE `alumno` (
   `a_psicometrico` varchar(254) DEFAULT NULL COMMENT 'resultado en examen psicometrico',
   `a_entrevista` varchar(254) DEFAULT NULL COMMENT 'entrevista realizada',
   `a_email` varchar(60) NOT NULL COMMENT 'correo electronico de alumno',
-  `a_fecharegistro` date DEFAULT NULL COMMENT 'fecha en la que se registro el alumno'
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno';
+  `a_fecharegistro` date DEFAULT NULL COMMENT 'fecha en la que se registro el alumno',
+  `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
+  `a_celPadre` varchar(50) NOT NULL,
+  `a_celMadre` varchar(50) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=10 ;
 
 --
 -- Volcado de datos para la tabla `alumno`
 --
 
-INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpaterno`, `a_apellidomaterno`, `a_fechanac`, `a_lugarnac`, `a_nacionalidad`, `a_sexo`, `a_estadocivil`, `a_gposanguineo`, `a_rh`, `a_curp`, `a_servmedico`, `a_trabajo`, `a_enfermedades`, `a_alergias`, `a_debilidadmotriz`, `a_domicilio`, `a_numext`, `a_numint`, `a_cp`, `a_colonia`, `a_municipio`, `a_numlocal`, `a_numcelular`, `a_nompapa`, `a_ocupacionpapa`, `a_empresapapa`, `a_sueldopapa`, `a_nommama`, `a_ocupacionmama`, `a_empresamama`, `a_sueldomama`, `a_otrosestudios`, `a_suspencionestudios`, `a_matreprobadas`, `a_aval`, `a_promocionesc`, `a_objcruzroja`, `a_objenfermeria`, `a_otracarrera`, `a_ceneval`, `a_regescuela`, `a_psicometrico`, `a_entrevista`, `a_email`, `a_fecharegistro`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'ariana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL),
-(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'MÃ©xico', 'M', 'Soltero', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.comasdsd', NULL),
-(8, '$2y$10$hoBA7bStal8ouWspyseOlO8m68uNQGC9V/0k6566ZUlVZUd2Hpafa', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27'),
-(9, '$2y$10$Qa.euWZVHDF3MOZFEfSGne/k579ROOEP.4TBXKCLEvNyEr9kvyX4i', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27');
+INSERT INTO `alumno` (`id_alumno`, `contra_alumno`, `a_nombre`, `a_apellidpaterno`, `a_apellidomaterno`, `a_fechanac`, `a_lugarnac`, `a_nacionalidad`, `a_sexo`, `a_estadocivil`, `a_gposanguineo`, `a_rh`, `a_curp`, `a_servmedico`, `a_trabajo`, `a_enfermedades`, `a_alergias`, `a_debilidadmotriz`, `a_domicilio`, `a_numext`, `a_numint`, `a_cp`, `a_colonia`, `a_municipio`, `a_numlocal`, `a_numcelular`, `a_nompapa`, `a_ocupacionpapa`, `a_empresapapa`, `a_sueldopapa`, `a_nommama`, `a_ocupacionmama`, `a_empresamama`, `a_sueldomama`, `a_otrosestudios`, `a_suspencionestudios`, `a_matreprobadas`, `a_aval`, `a_promocionesc`, `a_objcruzroja`, `a_objenfermeria`, `a_otracarrera`, `a_ceneval`, `a_regescuela`, `a_psicometrico`, `a_entrevista`, `a_email`, `a_fecharegistro`, `a_estatus`, `a_celPadre`, `a_celMadre`) VALUES
+(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'ariana', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '', '', ''),
+(7, '$2y$10$7ZXfcYTriTOD4wYRULG/f.bJNy3ASQBSGNpDmOaSez0ZlZaspJwB2', 'roberto carlos', 'rivera', 'martinez', '2015-02-02', 'gpe', 'MÃ©xico', 'M', 'Soltero', 'O', 'rh', 'rimr', 'Si', 'Si', 'enfermedades', 'alergias', 'motriz', 'Uruguay 5402 Villa Olimpica', NULL, NULL, '67180', 'colonia', 'municipio', '8181167707', NULL, 'Amado Rivera Gandarilla', 'ocupacion padre', 'empresa padre', 1111, 'nombre madre', ' ocupacion madre', ' empresa madre', 100, 'oteos estuddios', 'suspendido estudios', 'materias reporbadas', 'apoyos', 'escuela', 'porque cr', 'porque enfermeria', 'oteos estuddios', 1232, 'registro escuela', 'ex psicomentrico', '0', 'robert_rivmtz@hotmail.comasdsd', NULL, '', '', ''),
+(8, '$2y$10$hoBA7bStal8ouWspyseOlO8m68uNQGC9V/0k6566ZUlVZUd2Hpafa', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', ''),
+(9, '$2y$10$Qa.euWZVHDF3MOZFEfSGne/k579ROOEP.4TBXKCLEvNyEr9kvyX4i', 'carlos', 'laknds', 'alksnd', '2015-01-01', '', '', 'M', 'Soltero', 'O', '', '', 'Si', 'Si', '', '', '', '', NULL, NULL, '', '', '', '', NULL, '', '', '', 0, '', '', '', 0, '', '', '', '', '', '', '', '', 0, '', '', '', '', '2015-10-27', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -147,15 +144,19 @@ CREATE TABLE `curso` (
   `cu_nombre` varchar(60) DEFAULT NULL COMMENT 'nombre del curso',
   `cu_objetivo` varchar(254) DEFAULT NULL COMMENT 'objetivo del curso',
   `cu_numunidades` int(11) DEFAULT NULL COMMENT 'unidades correspondientes al curso',
-  `cu_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro del curso'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `cu_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro del curso',
+  `cu_aula` varchar(50) NOT NULL,
+  `cu_dias` varchar(50) NOT NULL,
+  `cu_hora` time NOT NULL,
+  `cu_isPrioridadAlta` tinyint(1) NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`) VALUES
-(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26');
+INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_hora`, `cu_isPrioridadAlta`) VALUES
+(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -168,7 +169,7 @@ CREATE TABLE `faltaslog` (
   `id_alumno` int(11) DEFAULT NULL COMMENT 'id del alumno',
   `id_curso` int(11) DEFAULT NULL COMMENT 'id del curso',
   `f_fecharegistro` date DEFAULT NULL COMMENT 'fecha de falta'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -224,15 +225,16 @@ CREATE TABLE `maestro` (
   `m_escolaridad` varchar(254) DEFAULT NULL COMMENT 'escolaridad',
   `m_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
-  `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+  `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
+  `m_estudios` text NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Volcado de datos para la tabla `maestro`
 --
 
-INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`, `m_estudios`) VALUES
+(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -258,7 +260,7 @@ CREATE TABLE `semestre` (
 `id_semestre` int(11) NOT NULL COMMENT 'id del semestre',
   `s_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
   `s_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Índices para tablas volcadas
@@ -340,6 +342,3 @@ MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT
 --
 ALTER TABLE `semestre`
 MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre';
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
