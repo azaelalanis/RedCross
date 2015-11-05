@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 05-11-2015 a las 07:52:46
+-- Tiempo de generación: 05-11-2015 a las 08:05:56
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.5.14
 
@@ -188,7 +188,10 @@ CREATE TABLE `inscritos` (
   `inscr_hora` varchar(16) DEFAULT NULL COMMENT 'hora del curso',
   `inscr_dia` varchar(16) DEFAULT NULL COMMENT 'dia del curso',
   `inscr_asistencia` int(11) DEFAULT NULL COMMENT 'total de faltas',
-  `inscr_calificacion` int(11) DEFAULT NULL COMMENT 'calificación final del curso',
+  `inscr_calificacion`  float DEFAULT NULL COMMENT 'calificación final del curso',
+  `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
+  `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
+  `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
   `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro '
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -231,14 +234,15 @@ CREATE TABLE `maestro` (
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
   `m_estudios` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `maestro`
 --
 
 INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`, `m_estudios`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '');
+(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
+(2, '$2y$10$dmA7nJeN4QCraCMZPILh3uYWMQsfiWEEIqwlE9ADvABHK9qJszNL.', 'nombre', 'paterno', 'materno', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '', NULL, 'estudios232');
 
 -- --------------------------------------------------------
 
@@ -340,7 +344,7 @@ MODIFY `id_falta` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de la falta';
 -- AUTO_INCREMENT de la tabla `maestro`
 --
 ALTER TABLE `maestro`
-MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT=2;
+MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `semestre`
 --
