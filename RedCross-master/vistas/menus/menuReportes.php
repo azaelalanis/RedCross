@@ -61,7 +61,7 @@ include "../../includes/sessionAdmin.php";
 					<h1 class="page-title">Generador de reportes</h1>
 				</header>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/alumnosInscritosPorCurso.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos en cursos">
 					</a>
 				</div>
@@ -79,25 +79,25 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/alumnosPorSemestre.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de alumnos inscritos por semestre">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/alumnos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los alumnos inscritos en la escuela">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/maestros.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los maestros">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/administradores.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Reporte de todos los administradores">
 					</a>
 				</div>
