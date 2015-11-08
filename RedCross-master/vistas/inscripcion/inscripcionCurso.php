@@ -139,7 +139,7 @@ include "../../includes/conexion.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Maestro(a) responsable</label>
 					<div class="col-lg-10">
-					<select class="form-control" id="listaMaestros" name="listaMaestros">
+					<select class="form-control" id="maestroResponsable" name="maestroResponsable">
 						<?php
 							$sql="SELECT m_nombre FROM maestro";
 							$result = mysql_query($sql);

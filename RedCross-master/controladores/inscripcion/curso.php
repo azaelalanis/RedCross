@@ -17,6 +17,7 @@ if(isset($_POST['dias'])){
     }
 }
 $isPrioridadAlta = $_POST['isPrioridadAlta'];
+$maestroResponsable = $_POST['maestroResponsable'];
 $lugar = $_POST['lugar'];
 
 
@@ -30,7 +31,8 @@ $result = mysql_insert("curso", array(
 	'cu_horaFinal' => $horaFinal,
 	'cu_dias' => $dias,
 	'cu_isPrioridadAlta' => $isPrioridadAlta,
-	'cu_aula' => $lugar
+	'cu_aula' => $lugar,
+	'cu_maestroresp' => $maestroResponsable
 
 ));
 if ($result){
