@@ -30,15 +30,7 @@ include "../../includes/sessionAdmin.php";
 
 	<script>
 
-	function selectOption(select, textOption){
-	for(option in select.options){
-		if(textOption == option.text){
-			option.selected = true;
-			break;
-		}
-	}
-}
-		function search(){
+	function search(){
 		var searchId = document.getElementById('searchId').value;
 		if(!isValidMatricula(searchId)){
 			alert("Favor de ingresar una matricula valida");
@@ -77,8 +69,8 @@ include "../../includes/sessionAdmin.php";
 	    selectOption(document.getElementById('GrupoSanguineo'), arrayFields[11]);
 	    document.getElementById('RH').value = arrayFields[12];
 	    document.getElementById('CURP').value = arrayFields[13];
-	    selectOption(document.getElementById('ServicioMedico'), arrayFields[14]);
-	    selectOption(document.getElementById('ActualmenteLaborando'), arrayFields[15]);
+	    document.getElementById('ServicioMedico').value = arrayFields[14];
+	    document.getElementById('ActualmenteLaborando').value = arrayFields[15];
 	    document.getElementById('Enfermedades').value = arrayFields[16];
 	    document.getElementById('Alergias').value = arrayFields[17];
 	    document.getElementById('DebilidadMotriz').value = arrayFields[18];
@@ -107,7 +99,10 @@ include "../../includes/sessionAdmin.php";
 	    document.getElementById('RegistroEscuela').value = arrayFields[44];
 	    document.getElementById('ExamenPsicometrico').value = arrayFields[45];
 	    document.getElementById('Entrevisto').value = arrayFields[46];
-	    document.getElementById('Email').value = arrayFields[48];
+	    document.getElementById('Email').value = arrayFields[47];
+	    selectOption(document.getElementById('Estatus'), arrayFields[49]);
+	    document.getElementById('celularPadre').value = arrayFields[50];
+	    document.getElementById('celularMadre').value = arrayFields[51];
 
 
 	  }
@@ -201,8 +196,8 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Sexo</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="Sexo" name="Sexo" >
-							<option value="Masculino">Masculino</option>
-							<option value="Femenino">Femenino</option>
+							<option value="M">Masculino</option>
+							<option value="F">Femenino</option>
 						</select>
 					</div>
 				</div>
@@ -250,22 +245,16 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="select" class="col-lg-2 control-label">Cuenta con servicio m&eacute;dico?</label>
+					<label for="select" class="col-lg-2 control-label">Con cual servicio m&eacute;dico cuenta?</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="ServicioMedico" name="ServicioMedico" >
-							<option value="Si">S&iacute;</option>
-							<option value="No">No</option>
-						</select>
+						<input type="text" class="form-control" id="ServicioMedico" name="ServicioMedico" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="select" class="col-lg-2 control-label">Actualmente est&aacute; laborando?</label>
+					<label for="select" class="col-lg-2 control-label">Trabajo Actual</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="ActualmenteLaborando" name="ActualmenteLaborando">
-							<option value="Si">S&iacute;</option>
-							<option value="No">No</option>
-						</select>
+						<input type="text" class="form-control" id="ActualmenteLaborando" name="ActualmenteLaborando" placeholder="" >
 					</div>
 				</div>
 				<br><br>
@@ -361,6 +350,13 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Celular</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="celularPadre" name="celularPadre" placeholder="Celular del padre" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo de la madre</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="NombreMadre" name="NombreMadre" placeholder="Nombre" >
@@ -385,6 +381,13 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" onchange="isFloat('SueldoMadre')" id="SueldoMadre" name="SueldoMadre" placeholder="Sueldo" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Celular</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="celularMadre" name="celularMadre" placeholder="Celular de la madre" >
 					</div>
 				</div>
 				<br><br>
@@ -469,6 +472,17 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">¿Acudi&oacute; a la entrevista?</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="Entrevisto" name="Entrevisto" placeholder="" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Estatus</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="Estatus" name="Estatus">
+							<option value="Activo">Activo</option>
+							<option value="Baja temporal">Baja temporal</option>
+							<option value="Baja definitiva">Baja definitiva</option>
+						</select>
 					</div>
 				</div>
 			</div> <!-- /row  -->

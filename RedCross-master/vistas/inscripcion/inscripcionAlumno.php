@@ -110,8 +110,8 @@ include "../../includes/sessionAdmin.php";
 					<label for="select" class="col-lg-2 control-label">Sexo</label>
 					<div class="col-lg-10">
 						<select class="form-control" id="select" name="Sexo" >
-							<option value="Masculino">Masculino</option>
-							<option value="Femenino">Femenino</option>
+							<option value="M">Masculino</option>
+							<option value="F">Femenino</option>
 						</select>
 					</div>
 				</div>
@@ -159,22 +159,16 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="select" class="col-lg-2 control-label">Cuenta con servicio m&eacute;dico?</label>
+					<label for="select" class="col-lg-2 control-label">Con cual servicio m&eacute;dico cuenta?</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select" name="ServicioMedico" >
-							<option value="Si">S&iacute;</option>
-							<option value="No">No</option>
-						</select>
+						<input type="text" class="form-control" id="" name="ServicioMedico" placeholder="" >
 					</div>
 				</div>
 				<br><br>
 				<div class="form-group">
-					<label for="select" class="col-lg-2 control-label">Actualmente est&aacute; laborando?</label>
+					<label for="select" class="col-lg-2 control-label">Trabajo Actual</label>
 					<div class="col-lg-10">
-						<select class="form-control" id="select" name="ActualmenteLaborando">
-							<option value="Si">S&iacute;</option>
-							<option value="No">No</option>
-						</select>
+						<input type="text" class="form-control" id="" name="ActualmenteLaborando" placeholder="" >
 					</div>
 				</div>
 				<br><br>
@@ -270,6 +264,13 @@ include "../../includes/sessionAdmin.php";
 				</div>
 				<br><br>
 				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Celular</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="celularPadre" placeholder="Celular del padre" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Nombre completo de la madre</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" id="" name="NombreMadre" placeholder="Nombre" >
@@ -294,6 +295,13 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">Sueldo</label>
 					<div class="col-lg-10">
 						<input type="text" class="form-control" onchange="isFloat('SueldoMadre')" id="SueldoMadre" name="SueldoMadre" placeholder="Sueldo" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Celular</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="" name="celularMadre" placeholder="Celular de la madre" >
 					</div>
 				</div>
 				<br><br>

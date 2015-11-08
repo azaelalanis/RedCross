@@ -15,24 +15,27 @@
 	$Telefono = $_POST["Telefono"];
 	$Email = $_POST["Email"];
 	$contrasena = $_POST["Contrasena"];
+	$estudios = $_POST["estudios"];
 
 
 $result = mysql_insert("maestro", array(
 		'contra_maestro' => password_hash($contrasena, PASSWORD_DEFAULT),
 		'm_nombre' => $nombres,
-    'm_apellidopaterno' => $APaterno,
-    'm_apellidomaterno' => $AMaterno,
+    	'm_apellidopaterno' => $APaterno,
+    	'm_apellidomaterno' => $AMaterno,
 		'm_fechanac' => $FechaNacimiento,
 		'm_curp' => $CURP,
 		'm_enfermedades' => $Enfermedades,
 		'm_alergias' => $Alergias,
 		'm_numlocal' => $Telefono,
-		'm_email' => $Email
+		'm_email' => $Email,
+		'm_estudios' => $estudios
 ));
 
 
 if ($result){
-	$alertMsg = "Nuevo maestro agregado satisfactoriamente";
+	$newId = mysql_insert_id();
+	$alertMsg = "Nuevo maestro agregado satisfactoriamente con matricula: $newId";
 }
 else{
 	$alertMsg = "Algo salio mal: " . mysql_error();

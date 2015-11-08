@@ -47,6 +47,8 @@ $RegistroEscuela = $_POST["RegistroEscuela"];
 $ExamenPsicometrico = $_POST["ExamenPsicometrico"];
 $Entrevisto = $_POST["Entrevisto"];
 $Contrasena = $_POST["Contrasena"];
+$CelularPadre = $_POST["celularPadre"];
+$CelularMadre = $_POST["celularMadre"];
 
 $result = mysql_insert("alumno", array(
 	'contra_alumno' => password_hash($Contrasena, PASSWORD_DEFAULT),
@@ -92,7 +94,9 @@ $result = mysql_insert("alumno", array(
 	'a_regescuela' => $RegistroEscuela,
 	'a_psicometrico' => $ExamenPsicometrico,
 	'a_entrevista' => $Entrevisto,
-	'a_fecharegistro' => date("Y-m-d") 
+	'a_fecharegistro' => date("Y-m-d"),
+	'a_celPadre' => $CelularPadre,
+	'a_celMadre' => $CelularMadre
 
 ));
 

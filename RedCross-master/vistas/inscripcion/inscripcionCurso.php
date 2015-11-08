@@ -90,6 +90,49 @@ include "../../includes/sessionAdmin.php";
 						<input type="text" class="form-control" onchange="isInt('unidades')" id="unidades" name="unidades" placeholder="Unidades del curso" >
 					</div>
 				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Dias de la semana</label>
+					<div class="col-lg-10">
+						<input type="checkbox" name="dias[]" value="Lunes">Lunes<br>
+						<input type="checkbox" name="dias[]" value="Martes">Martes<br> 
+						<input type="checkbox" name="dias[]" value="Miercoles">Miercoles<br>
+						<input type="checkbox" name="dias[]" value="Jueves">Jueves<br>
+						<input type="checkbox" name="dias[]" value="Viernes">Viernes<br>
+						<input type="checkbox" name="dias[]" value="Sabado">Sabado<br>
+					</div>
+				</div>
+				<br><br><br><br><br><br><br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Hora de inicio</label>
+					<div class="col-lg-10">
+						<input type="time" class="form-control" id="horaInicio" name="horaInicio">
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Hora de terminacion</label>
+					<div class="col-lg-10">
+						<input type="time" class="form-control" id="horaTerminacion" name="horaTerminacion">
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Lugar</label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="lugar" name="lugar" placeholder="Lugar en donde se impartira" >
+					</div>
+				</div>
+				<br><br>
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label">Curso con prioridad alta</label>
+					<div class="col-lg-10">
+						<select class="form-control" id="isPrioridadAlta" name="isPrioridadAlta" >
+							<option value="No">No</option>
+							<option value="Si">Si</option>
+						</select>
+					</div>
+				</div>
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
