@@ -61,7 +61,7 @@ include "../../includes/sessionMaestro.php";
 					<h1 class="page-title">Men&uacute;</h1>
 				</header>
 				<div>
-					<a href="#">
+					<a href="../../controladores/reportes/maestrosyCursos.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Cursos que estoy impartiendo">
 					</a>
 				</div>

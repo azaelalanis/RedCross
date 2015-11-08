@@ -7,13 +7,13 @@ require '../../includes/PHPExcel.php';
 
 // simple query
 
-$query = "SELECT id_alumno, a_nombre, a_apellidpaterno, a_apellidomaterno, a_curp, a_email, a_fecharegistro FROM alumno ORDER by a_nombre DESC";
+$query = "SELECT id_administrador, d_nombre, d_apellidpaterno, d_apellidomaterno, d_curp, d_email, d_fecharegistro FROM administrador ORDER by d_nombre DESC";
 $headings = array('Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'CURP', 'Email', 'Fecha de Registro');
 
 if ($result = mysql_query($query) or die(mysql_error())) {
   // Create a new PHPExcel object
   $objPHPExcel = new PHPExcel();
-  $objPHPExcel->getActiveSheet()->setTitle('Lista de Alumnos');
+  $objPHPExcel->getActiveSheet()->setTitle('Lista de Administradores');
 
   $rowNumber = 1;
   $col = 'A';
@@ -40,7 +40,7 @@ if ($result = mysql_query($query) or die(mysql_error())) {
   $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 
   header('Content-Type: application/vnd.ms-excel');
-  header('Content-Disposition: attachment;filename="reporteAlumnos.xls"');
+  header('Content-Disposition: attachment;filename="reporteAdmin.xls"');
   header('Cache-Control: max-age=0');
 
   $objWriter->save('php://output');
