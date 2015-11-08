@@ -1,3 +1,8 @@
+<?php
+include "../../includes/sessionMaestro.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +10,11 @@
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
-	<title>Asignaci&oacute;n de faltas</title>
+
+	<title>Asignaci&oacute;n de calificaciones</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -35,7 +40,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#">Asignaci&oacute;n de faltas</a>
+				<a class="navbar-brand" href="#">Asignaci&oacute;n de calificaciones</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
@@ -48,52 +53,52 @@
 	<!-- container -->
 	<div class="container">
 		<div class="row">
-			
+
 			<!-- Article main content -->
 			<article class="col-xs-12 maincontent">
-				<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+				<div class="col-md-10 col-md-offset-1 col-sm-8 col-sm-offset-2">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<h3 class="thin text-center">Sistema de asignaci&oacute;n de faltas.</h3>
+							<h3 class="thin text-center">Sistema de asignaci&oacute;n de calificaciones finales.</h3>
 							<p class="text-center text-muted">NOMBRE DEL CURSO AQUI</p>
 							<hr>
-							
+
 							<table class="table table-striped table-hover ">
 								<thead>
 									<tr>
 										<th>#</th>
 										<th>Nombre</th>
-										<th>Asisti&oacute;</th>
-										<th>Total de faltas</th>
+										<th>Calificaci&oacute;n</th>
+										<th>Faltas</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr>
 										<td>1</td>
 										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
+										<td><input type="text"></td>
 										<td>Column content</td>
 									</tr>
 									<tr>
 										<td>2</td>
 										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
+										<td><input type="text"></td>
 										<td>Column content</td>
 									</tr>
 									<tr>
 										<td>3</td>
 										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
+										<td><input type="text"></td>
 										<td>Column content</td>
 									</tr>
 									<tr>
 										<td>4</td>
 										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
+										<td><input type="text"></td>
 										<td>Column content</td>
 									</tr>
 								</tbody>
-							</table> 
+							</table>
 							<div class="col-lg-10 text-right">
 								<a href="#">
 									<button style="width:80%;" class="btn btn-action" type="submit">Guardar</button>
@@ -127,7 +132,7 @@
 								<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 									<a href="mailto:#">cruz.roja@cr.com</a><br>
 									81-1477-1477
-								</p>	
+								</p>
 							</div>
 						</div>
 
@@ -137,7 +142,7 @@
 								<p class="follow-me-icons clearfix">
 									<a href=""><i class="fa fa-twitter fa-2"></i></a>
 									<a href=""><i class="fa fa-facebook fa-2"></i></a>
-								</p>	
+								</p>
 							</div>
 						</div>
 
@@ -159,7 +164,7 @@
 						<div class="col-md-6 widget">
 							<div class="widget-body">
 								<p class="simplenav">
-									<a href="#">Home</a> | 
+									<a href="#">Home</a> |
 									<a href="#">Contacto</a> |
 									<b><a href="#">Iniciar sesi&oacute;n</a></b>
 								</p>
@@ -169,7 +174,7 @@
 						<div class="col-md-6 widget">
 							<div class="widget-body">
 								<p class="text-right">
-									Copyright &copy; 2015, Cruz Roja. 
+									Copyright &copy; 2015, Cruz Roja.
 								</p>
 							</div>
 						</div>
@@ -177,7 +182,7 @@
 					</div> <!-- /row of widgets -->
 				</div>
 			</div>
-		</footer>	
+		</footer>
 
 		<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

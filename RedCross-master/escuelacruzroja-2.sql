@@ -1,14 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.5
+-- version 4.2.10
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost:8889
--- Tiempo de generación: 05-11-2015 a las 08:05:56
+-- Servidor: localhost
+-- Tiempo de generación: 08-11-2015 a las 23:40:16
 -- Versión del servidor: 5.5.38
--- Versión de PHP: 5.5.14
+-- Versión de PHP: 5.6.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `escuelacruzroja`
@@ -52,7 +58,7 @@ CREATE TABLE `administrador` (
   `d_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `d_email` varchar(60) NOT NULL COMMENT 'correo electronico del administrador',
   `d_fecharegistro` date DEFAULT NULL COMMENT 'fecha en el que se registro'
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -120,7 +126,7 @@ CREATE TABLE `alumno` (
   `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno';
 
 --
 -- Volcado de datos para la tabla `alumno`
@@ -151,7 +157,7 @@ CREATE TABLE `curso` (
   `cu_horaInicio` time NOT NULL,
   `cu_isPrioridadAlta` varchar(2) NOT NULL,
   `cu_horaFinal` time NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `curso`
@@ -173,7 +179,7 @@ CREATE TABLE `faltaslog` (
   `id_alumno` int(11) DEFAULT NULL COMMENT 'id del alumno',
   `id_curso` int(11) DEFAULT NULL COMMENT 'id del curso',
   `f_fecharegistro` date DEFAULT NULL COMMENT 'fecha de falta'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -188,7 +194,7 @@ CREATE TABLE `inscritos` (
   `inscr_hora` varchar(16) DEFAULT NULL COMMENT 'hora del curso',
   `inscr_dia` varchar(16) DEFAULT NULL COMMENT 'dia del curso',
   `inscr_asistencia` int(11) DEFAULT NULL COMMENT 'total de faltas',
-  `inscr_calificacion`  float DEFAULT NULL COMMENT 'calificación final del curso',
+  `inscr_calificacion` float DEFAULT NULL COMMENT 'calificación final del curso',
   `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
   `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
   `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
@@ -233,16 +239,17 @@ CREATE TABLE `maestro` (
   `m_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
-  `m_estudios` text NOT NULL
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+  `m_estudios` text NOT NULL,
+  `m_maestroresp` varchar(60) NOT NULL COMMENT 'maestro responsable del curso'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `maestro`
 --
 
-INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`, `m_estudios`) VALUES
-(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, ''),
-(2, '$2y$10$dmA7nJeN4QCraCMZPILh3uYWMQsfiWEEIqwlE9ADvABHK9qJszNL.', 'nombre', 'paterno', 'materno', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '', NULL, 'estudios232');
+INSERT INTO `maestro` (`id_maestro`, `contra_maestro`, `m_nombre`, `m_apellidopaterno`, `m_apellidomaterno`, `m_fechanac`, `m_edad`, `m_lugarnac`, `m_nacionalidad`, `m_sexo`, `m_estadocivil`, `m_gposanguineo`, `m_rh`, `m_curp`, `m_servmedico`, `m_trabajo`, `m_enfermedades`, `m_alergias`, `m_debilidadmotriz`, `m_domicilio`, `m_numext`, `m_numint`, `m_cp`, `m_colonia`, `m_municipio`, `m_numlocal`, `m_numcelular`, `m_escolaridad`, `m_otrosestudios`, `m_email`, `m_fecharegistro`, `m_estudios`, `m_maestroresp`) VALUES
+(1, '$2y$10$FDJb0nY5XBrqdE3Yg96lR.c58RnsEpzCjOW75zTnRBnTZGki0rMmi', 'azael', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', ''),
+(2, '$2y$10$dmA7nJeN4QCraCMZPILh3uYWMQsfiWEEIqwlE9ADvABHK9qJszNL.', 'nombre', 'paterno', 'materno', '0000-00-00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, NULL, '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, '', NULL, 'estudios232', '');
 
 -- --------------------------------------------------------
 
@@ -268,7 +275,7 @@ CREATE TABLE `semestre` (
 `id_semestre` int(11) NOT NULL COMMENT 'id del semestre',
   `s_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
   `s_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -350,3 +357,6 @@ MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT
 --
 ALTER TABLE `semestre`
 MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre';
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

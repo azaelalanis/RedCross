@@ -1,5 +1,6 @@
 <?php
 include "../../includes/sessionAdmin.php";
+include "../../includes/conexion.php";
 
 ?>
 <!DOCTYPE html>
@@ -9,11 +10,11 @@ include "../../includes/sessionAdmin.php";
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Inscripci&oacute;n</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -30,7 +31,7 @@ include "../../includes/sessionAdmin.php";
 </head>
 
 <body class="home">
-	
+
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -95,7 +96,7 @@ include "../../includes/sessionAdmin.php";
 					<label for="" class="col-lg-2 control-label">Dias de la semana</label>
 					<div class="col-lg-10">
 						<input type="checkbox" name="dias[]" value="Lunes">Lunes<br>
-						<input type="checkbox" name="dias[]" value="Martes">Martes<br> 
+						<input type="checkbox" name="dias[]" value="Martes">Martes<br>
 						<input type="checkbox" name="dias[]" value="Miercoles">Miercoles<br>
 						<input type="checkbox" name="dias[]" value="Jueves">Jueves<br>
 						<input type="checkbox" name="dias[]" value="Viernes">Viernes<br>
@@ -133,6 +134,23 @@ include "../../includes/sessionAdmin.php";
 						</select>
 					</div>
 				</div>
+				<br><br>
+
+				<div class="form-group">
+					<label for="" class="col-lg-2 control-label">Maestro(a) responsable</label>
+					<div class="col-lg-10">
+					<select class="form-control" id="listaMaestros" name="listaMaestros">
+						<?php
+							$sql="SELECT m_nombre FROM maestro";
+							$result = mysql_query($sql);
+							while ($row = mysql_fetch_array($result)){
+								echo "<option value=\"".$row['m_nombre'] ."\"> ".$row['m_nombre']."</option><br>";
+							}
+						?>
+					</select>
+					</div>
+				</div>
+
 			</div> <!-- /row  -->
 			<br><br>
 			<div class="row" style="text-align:center;">
@@ -156,7 +174,7 @@ include "../../includes/sessionAdmin.php";
 							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 								<a href="mailto:#">cruz.roja@cr.com</a><br>
 								81-1477-1477
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -166,7 +184,7 @@ include "../../includes/sessionAdmin.php";
 							<p class="follow-me-icons clearfix">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -188,7 +206,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="#">Home</a> |
 								<a href="#">Contacto</a> |
 								<b><a href="#">Iniciar sesi&oacute;n</a></b>
 							</p>
@@ -198,7 +216,7 @@ include "../../includes/sessionAdmin.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
+								Copyright &copy; 2015, Cruz Roja.
 							</p>
 						</div>
 					</div>
@@ -206,7 +224,7 @@ include "../../includes/sessionAdmin.php";
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
+	</footer>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
