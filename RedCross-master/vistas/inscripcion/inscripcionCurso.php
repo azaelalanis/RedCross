@@ -141,10 +141,10 @@ include "../../includes/conexion.php";
 					<div class="col-lg-10">
 					<select class="form-control" id="maestroResponsable" name="maestroResponsable">
 						<?php
-							$sql="SELECT m_nombre FROM maestro";
+							$sql="SELECT m_nombre, m_apellidopaterno FROM maestro";
 							$result = mysql_query($sql);
 							while ($row = mysql_fetch_array($result)){
-								echo "<option value=\"".$row['m_nombre'] ."\"> ".$row['m_nombre']."</option><br>";
+								echo "<option value=\"".$row['m_nombre'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
 							}
 						?>
 					</select>
