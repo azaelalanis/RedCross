@@ -4,6 +4,7 @@
 	include "../../includes/conexion.php";
 	include "../../includes/mysql_util.php";
 
+
 $semestre = $_POST["semestre"];
 $nombre = $_POST["nombre"];
 $objetivoCurso = $_POST["objetivoCurso"];

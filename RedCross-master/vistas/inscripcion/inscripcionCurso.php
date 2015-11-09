@@ -141,11 +141,13 @@ include "../../includes/conexion.php";
 					<div class="col-lg-10">
 					<select class="form-control" id="maestroResponsable" name="maestroResponsable">
 						<?php
-							$sql="SELECT m_nombre, m_apellidopaterno FROM maestro";
+							$sql="SELECT id_maestro, m_nombre, m_apellidopaterno FROM maestro";
 							$result = mysql_query($sql);
 							while ($row = mysql_fetch_array($result)){
-								echo "<option value=\"".$row['m_nombre'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
+								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
+								//$maestroResponsableID = $row['id_maestro'];
 							}
+							//echo "<input type=\"hidden\"  id=\"maestroResponsableID\" name=\"maestroResponsableID\" value=\"".$maestroResponsableID."\">";
 						?>
 					</select>
 					</div>

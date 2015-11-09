@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 08-11-2015 a las 23:51:06
+-- Tiempo de generación: 09-11-2015 a las 20:34:49
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.6.2
 
@@ -158,7 +158,7 @@ CREATE TABLE `curso` (
   `cu_isPrioridadAlta` varchar(2) NOT NULL,
   `cu_horaFinal` time NOT NULL,
   `cu_maestroresp` varchar(100) DEFAULT NULL COMMENT 'maestro resp del curso'
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `curso`
@@ -168,7 +168,13 @@ INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_
 (1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', '0', '00:00:00', NULL),
 (2, 9, 'integrador', 'alksdlanl', 0, '2015-11-05', 'aulas3', ',Lunes,Martes,Miercoles,Jueves,Viernes,Sabado', '15:59:00', 'Si', '00:00:00', NULL),
 (3, 23, 'curso', 'objetivo', 0, '2015-11-05', 'aulas4', ',Lunes,Miercoles,Viernes', '14:00:00', 'Si', '13:00:00', NULL),
-(4, 0, '', '', 0, '2015-11-08', '', '', '00:00:00', 'No', '00:00:00', 'azael');
+(4, 0, '', '', 0, '2015-11-08', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
+(5, 3, 'Base de datos', 'Enseñar', 8, '2015-11-09', 'edificio 2', ',Lunes,Miercoles,Viernes', '09:30:00', 'No', '13:00:00', 'azael'),
+(6, 5, 'Base de datos avanzadas', 'Aprender UML', 2, '2015-11-09', 'edificio 1, salon 424', ',Lunes,Martes,Miercoles', '08:00:00', 'No', '12:00:00', 'azael'),
+(7, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
+(8, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
+(9, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '1'),
+(10, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '2');
 
 -- --------------------------------------------------------
 
@@ -342,7 +348,7 @@ MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_I
 -- AUTO_INCREMENT de la tabla `curso`
 --
 ALTER TABLE `curso`
-MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=5;
+MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT de la tabla `faltaslog`
 --

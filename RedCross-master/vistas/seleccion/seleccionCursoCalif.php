@@ -73,30 +73,14 @@ include "../../includes/sessionMaestro.php";
 									</tr>
 								</thead>
 								<tbody>
+									
 									<tr>
 										<td>1</td>
 										<td><a href="#">Column content</a></td>
 										<td>Column content</td>
 										<td>Column content</td>
 									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
+
 								</tbody>
 							</table>
 						</div>
