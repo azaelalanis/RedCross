@@ -9,11 +9,11 @@ include "../../includes/sessionMaestro.php";
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Men&uacute;</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -45,7 +45,7 @@ include "../../includes/sessionMaestro.php";
 				</ul>
 			</div><!--/.nav-collapse -->
 		</div>
-	</div> 
+	</div>
 	<!-- /.navbar -->
 
 	<header id="head" class="secondary"></header>
@@ -54,7 +54,7 @@ include "../../includes/sessionMaestro.php";
 	<div class="container">
 
 		<div class="row">
-			
+
 			<!-- Article main content -->
 			<article class="col-sm-9 maincontent">
 				<header class="page-header">
@@ -67,20 +67,20 @@ include "../../includes/sessionMaestro.php";
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../seleccion/seleccionCursoCalif.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Asignar calificaciones finales">
 					</a>
 				</div>
 				<br>
 				<div>
-					<a href="#">
+					<a href="../seleccion/seleccionCursoAsistencia.php">
 					<input class="btn btn-action" style="width:100%;" type="submit" value="Tomar lista">
 					</a>
 				</div>
 				<br>
 			</article>
 			<!-- /Article -->
-			
+
 			<!-- Sidebar -->
 			<aside class="col-sm-3 sidebar sidebar-right">
 
@@ -103,14 +103,14 @@ include "../../includes/sessionMaestro.php";
 		<div class="footer1">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-3 widget">
 						<h3 class="widget-title">Informaci&oacute;n</h3>
 						<div class="widget-body">
 							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 								<a href="mailto:#">cruz.roja@cr.com</a><br>
 								81-1477-1477
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -120,7 +120,7 @@ include "../../includes/sessionMaestro.php";
 							<p class="follow-me-icons clearfix">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -138,11 +138,11 @@ include "../../includes/sessionMaestro.php";
 		<div class="footer2">
 			<div class="container">
 				<div class="row">
-					
+
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="#">Home</a> |
 								<a href="#">Contacto</a> |
 								<b><a href="#">Iniciar sesi&oacute;n</a></b>
 							</p>
@@ -152,7 +152,7 @@ include "../../includes/sessionMaestro.php";
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
+								Copyright &copy; 2015, Cruz Roja.
 							</p>
 						</div>
 					</div>
@@ -172,11 +172,11 @@ include "../../includes/sessionMaestro.php";
 	<script src="assets/js/headroom.min.js"></script>
 	<script src="assets/js/jQuery.headroom.min.js"></script>
 	<script src="assets/js/template.js"></script>
-	
+
 	<!-- Google Maps -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script> 
+	<script src="https://maps.googleapis.com/maps/api/js?key=&amp;sensor=false&amp;extension=.js"></script>
 	<script src="assets/js/google-map.js"></script>
-	
+
 
 </body>
 </html>
