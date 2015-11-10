@@ -95,12 +95,12 @@ include "../../includes/conexion.php";
 				<div class="form-group">
 					<label for="" class="col-lg-2 control-label">Dias de la semana</label>
 					<div class="col-lg-10">
-						<input type="checkbox" name="dias[]" value="Lunes">Lunes<br>
-						<input type="checkbox" name="dias[]" value="Martes">Martes<br>
-						<input type="checkbox" name="dias[]" value="Miercoles">Miercoles<br>
-						<input type="checkbox" name="dias[]" value="Jueves">Jueves<br>
-						<input type="checkbox" name="dias[]" value="Viernes">Viernes<br>
-						<input type="checkbox" name="dias[]" value="Sabado">Sabado<br>
+						<input type="checkbox" name="dias[]" value="Lu">Lunes<br>
+						<input type="checkbox" name="dias[]" value="Ma">Martes<br>
+						<input type="checkbox" name="dias[]" value="Mi">Miercoles<br>
+						<input type="checkbox" name="dias[]" value="Ju">Jueves<br>
+						<input type="checkbox" name="dias[]" value="Vi">Viernes<br>
+						<input type="checkbox" name="dias[]" value="Sa">Sabado<br>
 					</div>
 				</div>
 				<br><br><br><br><br><br><br><br>
@@ -145,7 +145,7 @@ include "../../includes/conexion.php";
 							$result = mysql_query($sql);
 							while ($row = mysql_fetch_array($result)){
 								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
-							}	
+							}
 						?>
 					</select>
 					</div>
