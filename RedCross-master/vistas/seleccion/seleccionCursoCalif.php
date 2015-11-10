@@ -1,6 +1,6 @@
 <?php
 include "../../includes/sessionMaestro.php";
-
+include "../../includes/conexion.php";
 ?>
 
 <!DOCTYPE html>
@@ -73,13 +73,27 @@ include "../../includes/sessionMaestro.php";
 									</tr>
 								</thead>
 								<tbody>
-									
-									<tr>
-										<td>1</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
+
+									<?php
+
+									Session_start();
+									$maestroResponsableID = $_SESSION['matricula'];
+
+										$sql="SELECT id_curso, cu_nombre, cu_horaInicio, cu_horaFinal, cu_aula FROM curso where cu_maestroresp =".$maestroResponsableID;
+										$result = mysql_query($sql);
+										while ($row = mysql_fetch_array($result)){
+											//echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
+											echo "<tr>
+												<td> ".$row['id_curso']." </td>
+												<td><a href=\"#\"> ".$row['cu_nombre']." </a></td>
+												<td> ".$row['cu_horaInicio']." a ".$row['cu_horaFinal']." </td>
+												<td> ".$row['cu_aula']." </td>
+													</tr>";
+
+										}
+									?>
+
+
 
 								</tbody>
 							</table>

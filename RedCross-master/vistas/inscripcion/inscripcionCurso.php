@@ -145,9 +145,7 @@ include "../../includes/conexion.php";
 							$result = mysql_query($sql);
 							while ($row = mysql_fetch_array($result)){
 								echo "<option value=\"".$row['id_maestro'] ."\"> ".$row['m_nombre']." ".$row['m_apellidopaterno']."</option><br>";
-								//$maestroResponsableID = $row['id_maestro'];
-							}
-							//echo "<input type=\"hidden\"  id=\"maestroResponsableID\" name=\"maestroResponsableID\" value=\"".$maestroResponsableID."\">";
+							}	
 						?>
 					</select>
 					</div>
