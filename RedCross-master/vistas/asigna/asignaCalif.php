@@ -1,6 +1,8 @@
 <?php
 include "../../includes/sessionMaestro.php";
-
+include "../../includes/conexion.php";
+Session_start();
+$maestroResponsableID = $_SESSION['matricula'];
 ?>
 
 <!DOCTYPE html>
@@ -44,7 +46,7 @@ include "../../includes/sessionMaestro.php";
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Regresar</a></li>
+					<li><a href="../seleccion/seleccionCursoCalif.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -60,7 +62,17 @@ include "../../includes/sessionMaestro.php";
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Sistema de asignaci&oacute;n de calificaciones finales.</h3>
-							<p class="text-center text-muted">NOMBRE DEL CURSO AQUI</p>
+							<?php
+								$cursoID = $_GET["id"];
+								$sql="SELECT cu_nombre FROM curso where id_curso =".$cursoID;
+								$result = mysql_query($sql);
+								while ($row = mysql_fetch_array($result)){
+									echo "<p class=\"text-center text-muted\"> ".strtoupper($row['cu_nombre'])." </p>";
+								}
+
+							?>
+
+
 							<hr>
 
 							<table class="table table-striped table-hover ">
@@ -104,7 +116,7 @@ include "../../includes/sessionMaestro.php";
 									<button style="width:80%;" class="btn btn-action" type="submit">Guardar</button>
 								</a>
 								<br><br>
-								<a href="#">
+								<a href="../seleccion/seleccionCursoCalif.php">
 									<button style="width:80%;" class="btn btn-action" type="submit">Cancelar</button>
 								</a>
 							</div>

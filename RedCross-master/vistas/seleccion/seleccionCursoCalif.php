@@ -74,30 +74,21 @@ include "../../includes/conexion.php";
 									</tr>
 								</thead>
 								<tbody>
-
 									<?php
-
-									Session_start();
-									$maestroResponsableID = $_SESSION['matricula'];
-
+									  Session_start();
+									  $maestroResponsableID = $_SESSION['matricula'];
 										$sql="SELECT id_curso, cu_nombre,cu_dias, cu_horaInicio, cu_horaFinal, cu_aula FROM curso where cu_maestroresp =".$maestroResponsableID." order by id_curso ";
 										$result = mysql_query($sql);
 										while ($row = mysql_fetch_array($result)){
-
 											echo "<tr>
 												<td> ".$row['id_curso']." </td>
-												<td><a href=\"#\"> ".$row['cu_nombre']." </a></td>
+												<td><a href=\"../asigna/asignaCalif.php?id=".$row['id_curso']." \"> ".$row['cu_nombre']." </a></td>
 												<td> ".substr($row['cu_dias'],1)." </td>
 												<td> ".date('h:i A' , strtotime($row['cu_horaInicio']))." a ".date('h:i A' , strtotime($row['cu_horaFinal']))." </td>
 												<td> ".$row['cu_aula']." </td>
 													</tr>";
 										}
-
-
 									?>
-
-
-
 								</tbody>
 							</table>
 						</div>
