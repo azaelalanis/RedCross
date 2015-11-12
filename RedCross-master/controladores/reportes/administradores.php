@@ -7,7 +7,7 @@ require '../../includes/PHPExcel.php';
 
 // simple query
 
-$query = "SELECT id_administrador, d_nombre, d_apellidpaterno, d_apellidomaterno, d_curp, d_email, d_fecharegistro FROM administrador ORDER by d_nombre DESC";
+$query = "SELECT id_administrador, d_nombre, d_apellidopaterno, d_apellidomaterno, d_curp, d_email, d_fecharegistro FROM administrador ORDER by d_nombre DESC";
 $headings = array('Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'CURP', 'Email', 'Fecha de Registro');
 
 if ($result = mysql_query($query) or die(mysql_error())) {
