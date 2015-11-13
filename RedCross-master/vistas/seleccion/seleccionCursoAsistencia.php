@@ -22,7 +22,21 @@ include "../../includes/sessionMaestro.php";
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script>
+		function loadCourses(){
+		    xhr=new XMLHttpRequest();
+		    xhr.onload= fillFields;
+		    var url="../../controladores/seleccion/obtenerCursos.php";
+		    xhr.open("GET", url, true);
+		    xhr.send();
+	  	}
 
+	  function fillFields(){
+	    
+	  	document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
+	    
+	  }
+	</script>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
@@ -30,7 +44,7 @@ include "../../includes/sessionMaestro.php";
 	<![endif]-->
 </head>
 
-<body>
+<body onload="loadCourses()">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -66,37 +80,13 @@ include "../../includes/sessionMaestro.php";
 							<table class="table table-striped table-hover ">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>Id</th>
 										<th>Curso</th>
 										<th>Horario</th>
 										<th>Sal&oacute;n</th>
 									</tr>
 								</thead>
-								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href="#">Column content</a></td>
-										<td>Column content</td>
-										<td>Column content</td>
-									</tr>
+								<tbody id="tbodyCursos">
 								</tbody>
 							</table>
 						</div>

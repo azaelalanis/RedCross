@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.2.10
+-- version 4.2.5
 -- http://www.phpmyadmin.net
 --
--- Servidor: localhost
--- Tiempo de generación: 09-11-2015 a las 20:34:49
+-- Servidor: localhost:8889
+-- Tiempo de generación: 13-11-2015 a las 04:23:19
 -- Versión del servidor: 5.5.38
--- Versión de PHP: 5.6.2
+-- Versión de PHP: 5.5.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
 
 --
 -- Base de datos: `escuelacruzroja`
@@ -58,7 +52,7 @@ CREATE TABLE `administrador` (
   `d_otrosestudios` varchar(254) DEFAULT NULL COMMENT 'otros estudios',
   `d_email` varchar(60) NOT NULL COMMENT 'correo electronico del administrador',
   `d_fecharegistro` date DEFAULT NULL COMMENT 'fecha en el que se registro'
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `administrador`
@@ -126,7 +120,7 @@ CREATE TABLE `alumno` (
   `a_estatus` varchar(50) NOT NULL DEFAULT 'Activo',
   `a_celPadre` varchar(50) NOT NULL,
   `a_celMadre` varchar(50) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno';
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 COMMENT='Registro administrativo del alumno' AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `alumno`
@@ -157,37 +151,25 @@ CREATE TABLE `curso` (
   `cu_horaInicio` time NOT NULL,
   `cu_isPrioridadAlta` varchar(2) NOT NULL,
   `cu_horaFinal` time NOT NULL,
-  `cu_maestroresp` varchar(100) DEFAULT NULL COMMENT 'maestro resp del curso'
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+  `cu_maestroresp` varchar(100) DEFAULT NULL COMMENT 'maestro resp del curso',
+  `cu_ultimaFechaAsistencia` date NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
 
 --
 -- Volcado de datos para la tabla `curso`
 --
 
-INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_horaInicio`, `cu_isPrioridadAlta`, `cu_horaFinal`, `cu_maestroresp`) VALUES
-(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', '0', '00:00:00', NULL),
-(2, 9, 'integrador', 'alksdlanl', 0, '2015-11-05', 'aulas3', ',Lunes,Martes,Miercoles,Jueves,Viernes,Sabado', '15:59:00', 'Si', '00:00:00', NULL),
-(3, 23, 'curso', 'objetivo', 0, '2015-11-05', 'aulas4', ',Lunes,Miercoles,Viernes', '14:00:00', 'Si', '13:00:00', NULL),
-(4, 0, '', '', 0, '2015-11-08', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
-(5, 3, 'Base de datos', 'Enseñar', 8, '2015-11-09', 'edificio 2', ',Lunes,Miercoles,Viernes', '09:30:00', 'No', '13:00:00', 'azael'),
-(6, 5, 'Base de datos avanzadas', 'Aprender UML', 2, '2015-11-09', 'edificio 1, salon 424', ',Lunes,Martes,Miercoles', '08:00:00', 'No', '12:00:00', 'azael'),
-(7, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
-(8, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael'),
-(9, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '1'),
-(10, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '2');
-
--- --------------------------------------------------------
-
---
--- Estructura de tabla para la tabla `faltaslog`
---
-
-CREATE TABLE `faltaslog` (
-`id_falta` int(11) NOT NULL COMMENT 'id de la falta',
-  `id_alumno` int(11) DEFAULT NULL COMMENT 'id del alumno',
-  `id_curso` int(11) DEFAULT NULL COMMENT 'id del curso',
-  `f_fecharegistro` date DEFAULT NULL COMMENT 'fecha de falta'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `curso` (`id_curso`, `id_semestre`, `cu_nombre`, `cu_objetivo`, `cu_numunidades`, `cu_fecharegistro`, `cu_aula`, `cu_dias`, `cu_horaInicio`, `cu_isPrioridadAlta`, `cu_horaFinal`, `cu_maestroresp`, `cu_ultimaFechaAsistencia`) VALUES
+(1, 8, 'compiladores', 'kjansdkjas', 123, '2015-10-26', '', '', '00:00:00', '0', '00:00:00', NULL, '0000-00-00'),
+(2, 9, 'integrador', 'alksdlanl', 0, '2015-11-05', 'aulas3', ',Lunes,Martes,Miercoles,Jueves,Viernes,Sabado', '15:59:00', 'Si', '00:00:00', NULL, '0000-00-00'),
+(3, 23, 'curso', 'objetivo', 0, '2015-11-05', 'aulas4', ',Lunes,Miercoles,Viernes', '14:00:00', 'Si', '13:00:00', NULL, '0000-00-00'),
+(4, 0, '', '', 0, '2015-11-08', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
+(5, 3, 'Base de datos', 'Enseñar', 8, '2015-11-09', 'edificio 2', ',Lunes,Miercoles,Viernes', '09:30:00', 'No', '13:00:00', 'azael', '0000-00-00'),
+(6, 5, 'Base de datos avanzadas', 'Aprender UML', 2, '2015-11-09', 'edificio 1, salon 424', ',Lunes,Martes,Miercoles', '08:00:00', 'No', '12:00:00', 'azael', '0000-00-00'),
+(7, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
+(8, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', 'azael', '0000-00-00'),
+(9, 0, 'compi', '', 0, '2015-11-09', 'aulas 5', ',Lunes,Miercoles,Viernes', '00:00:00', 'No', '05:00:00', '1', '2015-11-10'),
+(10, 0, '', '', 0, '2015-11-09', '', '', '00:00:00', 'No', '00:00:00', '2', '0000-00-00');
 
 -- --------------------------------------------------------
 
@@ -201,13 +183,22 @@ CREATE TABLE `inscritos` (
   `inscr_periodo` varchar(16) DEFAULT NULL COMMENT 'periodo de inscripción',
   `inscr_hora` varchar(16) DEFAULT NULL COMMENT 'hora del curso',
   `inscr_dia` varchar(16) DEFAULT NULL COMMENT 'dia del curso',
-  `inscr_asistencia` int(11) DEFAULT NULL COMMENT 'total de faltas',
+  `inscr_asistencia` smallint(6) DEFAULT NULL COMMENT 'total de faltas',
   `inscr_calificacion` float DEFAULT NULL COMMENT 'calificación final del curso',
   `inscr_calificacion1` float NOT NULL COMMENT 'calificación primer parcial',
   `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
   `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
-  `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro '
+  `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro ',
+  `inscr_fechasFaltas` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `inscritos`
+--
+
+INSERT INTO `inscritos` (`id_alumno`, `id_curso`, `inscr_periodo`, `inscr_hora`, `inscr_dia`, `inscr_asistencia`, `inscr_calificacion`, `inscr_calificacion1`, `inscr_calificacion2`, `inscr_calificacion3`, `inscr_fecharegistro`, `inscr_fechasFaltas`) VALUES
+(1, 9, NULL, NULL, NULL, 3, NULL, 0, 0, 0, NULL, '5999'),
+(7, 9, NULL, NULL, NULL, 4, NULL, 0, 0, 0, NULL, '4007');
 
 -- --------------------------------------------------------
 
@@ -248,7 +239,7 @@ CREATE TABLE `maestro` (
   `m_email` varchar(60) DEFAULT NULL COMMENT 'correo electronico del profesor',
   `m_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro',
   `m_estudios` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Volcado de datos para la tabla `maestro`
@@ -282,7 +273,7 @@ CREATE TABLE `semestre` (
 `id_semestre` int(11) NOT NULL COMMENT 'id del semestre',
   `s_desc` varchar(60) DEFAULT NULL COMMENT 'descripción del semestre',
   `s_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 --
 -- Índices para tablas volcadas
@@ -307,16 +298,10 @@ ALTER TABLE `curso`
  ADD PRIMARY KEY (`id_curso`);
 
 --
--- Indices de la tabla `faltaslog`
---
-ALTER TABLE `faltaslog`
- ADD PRIMARY KEY (`id_falta`);
-
---
 -- Indices de la tabla `inscritos`
 --
 ALTER TABLE `inscritos`
- ADD UNIQUE KEY `id_alumno` (`id_alumno`), ADD UNIQUE KEY `id_curso` (`id_curso`);
+ ADD PRIMARY KEY (`id_alumno`,`id_curso`);
 
 --
 -- Indices de la tabla `maestro`
@@ -350,11 +335,6 @@ MODIFY `id_alumno` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de alumno',AUTO_I
 ALTER TABLE `curso`
 MODIFY `id_curso` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del curso',AUTO_INCREMENT=11;
 --
--- AUTO_INCREMENT de la tabla `faltaslog`
---
-ALTER TABLE `faltaslog`
-MODIFY `id_falta` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id de la falta';
---
 -- AUTO_INCREMENT de la tabla `maestro`
 --
 ALTER TABLE `maestro`
@@ -364,6 +344,3 @@ MODIFY `id_maestro` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id ',AUTO_INCREMENT
 --
 ALTER TABLE `semestre`
 MODIFY `id_semestre` int(11) NOT NULL AUTO_INCREMENT COMMENT 'id del semestre';
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

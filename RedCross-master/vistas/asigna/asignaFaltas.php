@@ -1,6 +1,22 @@
 <?php
-include "../../includes/sessionMaestro.php";
-
+	include "../../includes/sessionMaestro.php";
+	include "../../includes/conexion.php";
+	include "../../includes/mysql_util.php";
+	date_default_timezone_set('PST');
+	$idCurso = $_POST["idCurso"];
+	$sql = "SELECT cu_nombre, cu_ultimaFechaAsistencia from curso where id_curso = $idCurso";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+	$fecha=$row['cu_ultimaFechaAsistencia'];
+	$nombre = $row['cu_nombre'];
+	$today = date("Y-m-d");
+	$today =  date('Y-m-d',(strtotime ( '-1 day' , strtotime($today) ) ));
+	if($fecha >= $today){
+		echo "<script language=\"javascript\">
+				alert(\"Ya se tomo la asistencia para el dia de hoy\");
+				window.location.href = \"../seleccion/seleccionCursoAsistencia.php\"
+			</script>";
+	}
 ?>
 
 <!DOCTYPE html>
@@ -60,43 +76,46 @@ include "../../includes/sessionMaestro.php";
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Sistema de asignaci&oacute;n de faltas.</h3>
-							<p class="text-center text-muted">NOMBRE DEL CURSO AQUI</p>
+							<p class="text-center text-muted"><?php echo $nombre; ?></p>
 							<hr>
-
+							<form method="POST" action="../../controladores/asigna/asignaFaltas.php">
+								<?php echo '<input type="hidden"  id="matricula" name="matricula" value="'.$idCurso.'">' ?>
 							<table class="table table-striped table-hover ">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>Matricula</th>
 										<th>Nombre</th>
-										<th>Asisti&oacute;</th>
+										<th>Falta</th>
 										<th>Total de faltas</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href="#">Column content</a></td>
-										<td><input style="width:50%" type="checkbox"></td>
-										<td>Column content</td>
-									</tr>
+									<?php
+										
+										$sql = "SELECT ins.id_alumno, ins.inscr_asistencia, ins.inscr_fechasFaltas, al.a_nombre, al.a_apellidpaterno 
+										FROM inscritos ins, alumno al where ins.id_alumno = al.id_alumno and ins.id_curso = $idCurso order by ins.id_alumno ";
+										$result = mysql_query($sql);
+										$tbody = "";
+										
+										while($row = mysql_fetch_array($result)){
+											$idAlumno=$row['id_alumno'];
+											$asistencia=$row['inscr_asistencia'];
+											$fechasFaltas = $row['inscr_fechasFaltas'];
+											$nombre = $row['a_nombre'];
+											$aPaterno = $row['a_apellidpaterno'];
+											$tbody = $tbody . "
+												<tr>
+													<td>$idAlumno</td>
+													<td>$nombre $aPaterno</td>
+													<td> <input type=\"checkbox\" name=\"faltas[]\" value=\"$idAlumno\"> </td>
+													<td> $asistencia </td>
+												</tr>
+											";
+
+										}
+										echo $tbody;
+									?>
+									
 								</tbody>
 							</table>
 							<div class="col-lg-10 text-right">
@@ -104,9 +123,13 @@ include "../../includes/sessionMaestro.php";
 									<button style="width:80%;" class="btn btn-action" type="submit">Guardar</button>
 								</a>
 								<br><br>
-								<a href="#">
-									<button style="width:80%;" class="btn btn-action" type="submit">Cancelar</button>
-								</a>
+								</form>
+							
+							</div>
+							<div class="col-lg-10 text-right">
+								<a href="../seleccion/seleccionCursoAsistencia.php">
+									<button style="width:80%;" class="btn btn-action" >Cancelar</button>
+								</a>	
 							</div>
 						</div>
 
