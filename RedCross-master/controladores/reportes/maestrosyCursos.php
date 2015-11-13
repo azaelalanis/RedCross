@@ -7,7 +7,7 @@ require '../../includes/PHPExcel.php';
 
 // simple query
 
-$query = "SELECT a.id_maestro, a.m_nombre, a.m_apellidpaterno, a.m_apellidomaterno, a.m_email, b.id_curso, c.cu_nombre, c.id_semestre FROM maestro a INNER JOIN maestro_curso b ON a.id_maestro=b.id_maestro INNER JOIN curso c ON b.id_curso=c.id_curso ORDER by a.m_nombre DESC";
+$query = "SELECT a.id_maestro, a.m_nombre, a.m_apellidopaterno, a.m_apellidomaterno, a.m_email, b.id_curso, b.cu_nombre, b.id_semestre FROM maestro a INNER JOIN curso b ON a.id_maestro=b.cu_maestroresp ORDER by a.m_nombre DESC";
 $headings = array('Matricula', 'Nombre','Apellido Paterno', 'Apellido Materno', 'Email', 'ID Curso', 'Materia', 'Semestre');
 
 if ($result = mysql_query($query) or die(mysql_error())) {

@@ -63,7 +63,7 @@ $maestroResponsableID = $_SESSION['matricula'];
 						<div class="panel-body">
 							<h3 class="thin text-center">Sistema de asignaci&oacute;n de calificaciones finales.</h3>
 							<?php
-								$cursoID = $_GET["id"];
+								$cursoID = $_POST["idCurso"];
 								$sql="SELECT cu_nombre FROM curso where id_curso =".$cursoID;
 								$result = mysql_query($sql);
 								while ($row = mysql_fetch_array($result)){
