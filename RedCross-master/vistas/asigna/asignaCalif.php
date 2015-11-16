@@ -1,8 +1,15 @@
 <?php
-include "../../includes/sessionMaestro.php";
-include "../../includes/conexion.php";
-Session_start();
-$maestroResponsableID = $_SESSION['matricula'];
+	include "../../includes/sessionMaestro.php";
+	include "../../includes/conexion.php";
+	include "../../includes/mysql_util.php";
+
+	$idCurso = $_POST["idCurso"];
+	$sql = "SELECT cu_nombre from curso where id_curso = $idCurso";
+	$result = mysql_query($sql);
+	$row = mysql_fetch_array($result);
+
+	$nombre = $row['cu_nombre'];
+
 ?>
 
 <!DOCTYPE html>
@@ -62,54 +69,57 @@ $maestroResponsableID = $_SESSION['matricula'];
 					<div class="panel panel-default">
 						<div class="panel-body">
 							<h3 class="thin text-center">Sistema de asignaci&oacute;n de calificaciones finales.</h3>
-							<?php
-								$cursoID = $_POST["idCurso"];
-								$sql="SELECT cu_nombre FROM curso where id_curso =".$cursoID;
-								$result = mysql_query($sql);
-								while ($row = mysql_fetch_array($result)){
-									echo "<p class=\"text-center text-muted\"> ".strtoupper($row['cu_nombre'])." </p>";
-								}
-
-							?>
-
-
+							<p class="text-center text-muted"><?php echo $nombre; ?></p>
 							<hr>
-
+							<form method="POST" action="../../controladores/asigna/asignaCalif.php">
+								<?php echo '<input type="hidden"  id="matricula" name="matricula" value="'.$idCurso.'">' ?>
 							<table class="table table-striped table-hover ">
 								<thead>
 									<tr>
-										<th>#</th>
+										<th>Matricula</th>
 										<th>Nombre</th>
-										<th>Calificaci&oacute;n</th>
-										<th>Faltas</th>
+										<th>Primer parcial</th>
+										<th>Segundo parcial</th>
+										<th>Tercer parcial</th>
+										<th>Calificaci&oacute;n Final</th>
+										<th>Total de faltas</th>
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td>1</td>
-										<td><a href="#">Column content</a></td>
-										<td><input type="text"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>2</td>
-										<td><a href="#">Column content</a></td>
-										<td><input type="text"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>3</td>
-										<td><a href="#">Column content</a></td>
-										<td><input type="text"></td>
-										<td>Column content</td>
-									</tr>
-									<tr>
-										<td>4</td>
-										<td><a href="#">Column content</a></td>
-										<td><input type="text"></td>
-										<td>Column content</td>
-									</tr>
-								</tbody>
+									<?php
+
+										$sql = "SELECT ins.id_alumno, ins.inscr_asistencia, ins.inscr_calificacion1, ins.inscr_calificacion2,ins.inscr_calificacion3,ins.inscr_calificacion , al.a_nombre, al.a_apellidpaterno
+										FROM inscritos ins, alumno al where ins.id_alumno = al.id_alumno and ins.id_curso = $idCurso order by ins.id_alumno ";
+										$result = mysql_query($sql);
+										$tbody = "";
+
+										while($row = mysql_fetch_array($result)){
+											$idAlumno=$row['id_alumno'];
+											$asistencia=$row['inscr_asistencia'];
+											$nombre = $row['a_nombre'];
+											$aPaterno = $row['a_apellidpaterno'];
+											$calif1 = $row['inscr_calificacion1'];
+											$calif2 = $row['inscr_calificacion2'];
+											$calif3 = $row['inscr_calificacion3'];
+											$califFinal = $row['inscr_calificacion'];
+
+											$tbody = $tbody . "
+												<tr>
+													<td>$idAlumno</td>
+													<td>$nombre $aPaterno</td>
+													<td> <input type=\"text\" name=\"calificaciones1[]\" value=\"$calif1\"></td>
+													<td> <input type=\"text\" name=\"calificaciones2[]\" value=\"$calif2\"></td>
+													<td> <input type=\"text\" name=\"calificaciones3[]\" value=\"$calif3\"></td>
+													<td> <input type=\"text\" name=\"calificacionesFinal[]\" value=\"$califFinal\"></td>
+													<td> $asistencia </td>
+												</tr>
+													<input type=\"hidden\" name=\"idAlumnos[]\" value=\"$idAlumno\"  >
+											";
+
+										}
+										echo $tbody;
+									?>
+
 							</table>
 							<div class="col-lg-10 text-right">
 								<a href="#">

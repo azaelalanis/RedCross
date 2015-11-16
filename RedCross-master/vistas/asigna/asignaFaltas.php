@@ -91,12 +91,12 @@
 								</thead>
 								<tbody>
 									<?php
-										
-										$sql = "SELECT ins.id_alumno, ins.inscr_asistencia, ins.inscr_fechasFaltas, al.a_nombre, al.a_apellidpaterno 
+
+										$sql = "SELECT ins.id_alumno, ins.inscr_asistencia, ins.inscr_fechasFaltas, al.a_nombre, al.a_apellidpaterno
 										FROM inscritos ins, alumno al where ins.id_alumno = al.id_alumno and ins.id_curso = $idCurso order by ins.id_alumno ";
 										$result = mysql_query($sql);
 										$tbody = "";
-										
+
 										while($row = mysql_fetch_array($result)){
 											$idAlumno=$row['id_alumno'];
 											$asistencia=$row['inscr_asistencia'];
@@ -115,7 +115,7 @@
 										}
 										echo $tbody;
 									?>
-									
+
 								</tbody>
 							</table>
 							<div class="col-lg-10 text-right">
@@ -124,12 +124,12 @@
 								</a>
 								<br><br>
 								</form>
-							
+
 							</div>
 							<div class="col-lg-10 text-right">
 								<a href="../seleccion/seleccionCursoAsistencia.php">
 									<button style="width:80%;" class="btn btn-action" >Cancelar</button>
-								</a>	
+								</a>
 							</div>
 						</div>
 

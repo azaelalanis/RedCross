@@ -22,7 +22,21 @@ include "../../includes/conexion.php";
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script>
+		function loadCourses(){
+		    xhr=new XMLHttpRequest();
+		    xhr.onload= fillFields;
+		    var url="../../controladores/seleccion/obtenerCursosCalif.php";
+		    xhr.open("GET", url, true);
+		    xhr.send();
+	  	}
 
+	  function fillFields(){
+
+	  	document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
+
+	  }
+	</script>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
@@ -30,7 +44,7 @@ include "../../includes/conexion.php";
 	<![endif]-->
 </head>
 
-<body>
+<body onload="loadCourses()">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -73,30 +87,7 @@ include "../../includes/conexion.php";
 										<th>Sal&oacute;n</th>
 									</tr>
 								</thead>
-								<tbody>
-									<?php
-									  Session_start();
-									  $maestroResponsableID = $_SESSION['matricula'];
-										$sql="SELECT id_curso, cu_nombre,cu_dias, cu_horaInicio, cu_horaFinal, cu_aula FROM curso where cu_maestroresp =".$maestroResponsableID." order by id_curso ";
-										$result = mysql_query($sql);
-										$contForm = 1;
-										while ($row = mysql_fetch_array($result)){
-											echo "<tr>
-												<td> ".$row['id_curso']." </td>
-												<td>
-													<form id=\"form-$contForm\" method=\"post\" action= \"../asigna/asignaCalif.php\" >
-													 <a href=\"#\" onclick=\"document.getElementById('form-$contForm').submit();\">".$row['cu_nombre']."</a>
-													<input type=\"hidden\" id=\"idCurso\" name=\"idCurso\" value=\"".$row['id_curso']."\" > </input>
-													</form>
-												</td>
-
-												<td> ".substr($row['cu_dias'],1)." </td>
-												<td> ".date('h:i A' , strtotime($row['cu_horaInicio']))." a ".date('h:i A' , strtotime($row['cu_horaFinal']))." </td>
-												<td> ".$row['cu_aula']." </td>
-													</tr>";
-													$contForm = $contForm+1;
-										}
-									?>
+								<tbody id="tbodyCursos">
 								</tbody>
 							</table>
 						</div>
