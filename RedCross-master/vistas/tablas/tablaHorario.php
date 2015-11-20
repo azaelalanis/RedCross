@@ -1,3 +1,8 @@
+<?php
+include "../../includes/sessionAlumno.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,11 +10,11 @@
 	<meta name="viewport"    content="width=device-width, initial-scale=1.0">
 	<meta name="description" content="">
 	<meta name="author"      content="Sergey Pozhilov (GetTemplate.com)">
-	
+
 	<title>Horario</title>
 
 	<link rel="shortcut icon" href="assets/images/gt_favicon.png">
-	
+
 	<link rel="stylesheet" media="screen" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
@@ -17,6 +22,21 @@
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script>
+		function loadCourses(){
+				xhr=new XMLHttpRequest();
+				xhr.onload= fillFields;
+				var url="../../controladores/seleccion/obtenerCursosAlumno.php";
+				xhr.open("GET", url, true);
+				xhr.send();
+			}
+
+		function fillFields(){
+
+			document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
+
+		}
+	</script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -25,8 +45,7 @@
 	<![endif]-->
 </head>
 
-<body class="home">
-	
+<body onload="loadCourses()">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -61,45 +80,16 @@
 				<table class="table table-striped table-hover ">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Clase</th>
+							<th>#ID</th>
+							<th>Curso</th>
+							<th>Día</th>
 							<th>Horario</th>
 							<th>Sal&oacute;n</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr class="active">
-							<td>1</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>2</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>3</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>4</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>5</td>
-							<td>Column content</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
+					<tbody id="tbodyCursos">
 					</tbody>
-				</table> 
+				</table>
 			</div> <!-- /row  -->
 			<a href="#" class="btn btn-warning">Descargar en Excel</a>
 
@@ -118,7 +108,7 @@
 							<p> Avenida Alfonso Reyes Norte #2503 Norte, Del Prado, 64410 Monterrey, N.L. <br>
 								<a href="mailto:#">cruz.roja@cr.com</a><br>
 								81-1477-1477
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -128,7 +118,7 @@
 							<p class="follow-me-icons clearfix">
 								<a href=""><i class="fa fa-twitter fa-2"></i></a>
 								<a href=""><i class="fa fa-facebook fa-2"></i></a>
-							</p>	
+							</p>
 						</div>
 					</div>
 
@@ -150,7 +140,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="simplenav">
-								<a href="#">Home</a> | 
+								<a href="#">Home</a> |
 								<a href="#">Contacto</a> |
 								<b><a href="#">Iniciar sesi&oacute;n</a></b>
 							</p>
@@ -160,7 +150,7 @@
 					<div class="col-md-6 widget">
 						<div class="widget-body">
 							<p class="text-right">
-								Copyright &copy; 2015, Cruz Roja. 
+								Copyright &copy; 2015, Cruz Roja.
 							</p>
 						</div>
 					</div>
@@ -168,7 +158,7 @@
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-	</footer>	
+	</footer>
 
 	<!-- JavaScript libs are placed at the end of the document so the pages load faster -->
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
