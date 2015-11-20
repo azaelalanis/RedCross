@@ -1,4 +1,7 @@
+<?php
+include "../../includes/sessionAlumno.php";
 
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +22,21 @@
 	<!-- Custom styles for our template -->
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script>
+		function loadCourses(){
+				xhr=new XMLHttpRequest();
+				xhr.onload= fillFields;
+				var url="../../controladores/seleccion/obtenerCalifAlumno.php";
+				xhr.open("GET", url, true);
+				xhr.send();
+			}
+
+		function fillFields(){
+
+			document.getElementById('tbodyCursos').innerHTML = xhr.responseText.trim();
+
+		}
+	</script>
 
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
@@ -27,8 +45,7 @@
 	<![endif]-->
 </head>
 
-<body class="home">
-
+<body onload="loadCourses()">
 	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<div class="navbar-header">
@@ -63,37 +80,15 @@
 				<table class="table table-striped table-hover ">
 					<thead>
 						<tr>
-							<th>#</th>
-							<th>Clase</th>
+							<th>#ID</th>
+							<th>Curso</th>
+							<th>Calificaci&oacute;n 1er parcial</th>
+							<th>Calificaci&oacute;n 2ndo parcial</th>
+							<th>Calificaci&oacute;n 3er parcial</th>
 							<th>Calificaci&oacute;n Final</th>
 						</tr>
 					</thead>
-					<tbody>
-						<tr class="active">
-							<td>1</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>2</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>3</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>4</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
-						<tr class="active">
-							<td>5</td>
-							<td>Column content</td>
-							<td>Column content</td>
-						</tr>
+					<tbody id="tbodyCursos">
 					</tbody>
 				</table>
 			</div> <!-- /row  -->
