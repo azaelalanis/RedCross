@@ -6,7 +6,7 @@
 
 	session_start();
 $idAlumno = $_SESSION['matricula'];
-$sql="SELECT ins.id_alumno,cu.id_curso, cu.cu_nombre , cu.cu_dias, cu.cu_horaInicio, cu.cu_horaFinal, cu.cu_aula FROM inscritos ins, curso cu where ins.id_alumno = $idAlumno and ins.id_curso = cu.id_curso order by cu.id_curso";
+$sql="SELECT ins.id_alumno,cu.id_curso, cu.cu_nombre , cu.cu_dias, cu.cu_horaInicio, cu.cu_horaFinal, cu.cu_aula FROM inscritos ins, curso cu where ins.id_alumno = $idAlumno and ins.id_curso = cu.id_curso and ins.inscr_Cursado = 0 order by cu.id_curso";
 $result = mysql_query($sql);
 $tableBody = "";
 $formCont = 0;

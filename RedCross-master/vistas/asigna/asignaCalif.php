@@ -89,7 +89,7 @@
 									<?php
 
 										$sql = "SELECT ins.id_alumno, ins.inscr_asistencia, ins.inscr_calificacion1, ins.inscr_calificacion2,ins.inscr_calificacion3,ins.inscr_calificacion , al.a_nombre, al.a_apellidpaterno
-										FROM inscritos ins, alumno al where ins.id_alumno = al.id_alumno and ins.id_curso = $idCurso order by ins.id_alumno ";
+										FROM inscritos ins, alumno al where ins.id_alumno = al.id_alumno and ins.id_curso = $idCurso and ins.inscr_Cursado = 0 order by ins.id_alumno ";
 										$result = mysql_query($sql);
 										$tbody = "";
 
