@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost:8889
--- Tiempo de generación: 13-11-2015 a las 04:23:19
+-- Tiempo de generación: 24-11-2015 a las 00:05:12
 -- Versión del servidor: 5.5.38
 -- Versión de PHP: 5.5.14
 
@@ -189,16 +189,17 @@ CREATE TABLE `inscritos` (
   `inscr_calificacion2` float NOT NULL COMMENT 'calificación segundo parcial',
   `inscr_calificacion3` float NOT NULL COMMENT 'calificación tercer parcial',
   `inscr_fecharegistro` date DEFAULT NULL COMMENT 'fecha de registro ',
-  `inscr_fechasFaltas` text NOT NULL
+  `inscr_fechasFaltas` text NOT NULL,
+  `inscr_Cursado` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `inscritos`
 --
 
-INSERT INTO `inscritos` (`id_alumno`, `id_curso`, `inscr_periodo`, `inscr_hora`, `inscr_dia`, `inscr_asistencia`, `inscr_calificacion`, `inscr_calificacion1`, `inscr_calificacion2`, `inscr_calificacion3`, `inscr_fecharegistro`, `inscr_fechasFaltas`) VALUES
-(1, 9, NULL, NULL, NULL, 3, NULL, 0, 0, 0, NULL, '5999'),
-(7, 9, NULL, NULL, NULL, 4, NULL, 0, 0, 0, NULL, '4007');
+INSERT INTO `inscritos` (`id_alumno`, `id_curso`, `inscr_periodo`, `inscr_hora`, `inscr_dia`, `inscr_asistencia`, `inscr_calificacion`, `inscr_calificacion1`, `inscr_calificacion2`, `inscr_calificacion3`, `inscr_fecharegistro`, `inscr_fechasFaltas`, `inscr_Cursado`) VALUES
+(1, 9, NULL, NULL, NULL, 3, NULL, 0, 0, 0, NULL, '5999', 1),
+(7, 9, NULL, NULL, NULL, 4, NULL, 0, 0, 0, NULL, '4007', 1);
 
 -- --------------------------------------------------------
 

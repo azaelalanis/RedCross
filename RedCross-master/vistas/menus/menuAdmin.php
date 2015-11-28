@@ -22,7 +22,14 @@ include "../../includes/sessionAdmin.php";
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css" media="screen" >
 	<link rel="stylesheet" href="assets/css/main.css">
 	<script src="../../includes/javascript_util.js"></script>
-
+	<script>
+		function confirmNewSemester(){
+			var buttonConfirm = confirm('Esta seguro de iniciar un nuevo semestre');
+			if (buttonConfirm === true){
+				document.getElementById('resetSemestre').submit();
+			}
+		}
+	</script>
 	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 	<!--[if lt IE 9]>
 	<script src="assets/js/html5shiv.js"></script>
@@ -89,6 +96,12 @@ include "../../includes/sessionAdmin.php";
 					<a href="menuReportes.php">
 						<input class="btn btn-action" style="width:100%;" type="submit" value="Herramienta de generaci&oacute;n de Reportes">
 					</a>
+				</div>
+				<br>
+				<div>
+					<button class="btn btn-action" style="width:100%;" onclick="confirmNewSemester()"> Nuevo Semestre </button>
+					<form onsubmit="" id="resetSemestre" action="../../controladores/inscripcion/resetSemestre.php" method="POST">
+					</form>
 				</div>
 				<br>
 			</article>
