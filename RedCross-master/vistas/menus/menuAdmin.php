@@ -104,6 +104,12 @@ include "../../includes/sessionAdmin.php";
 					</form>
 				</div>
 				<br>
+				<div>
+					<a href="../edicion/reinscribirAlumno.php">
+						<input class="btn btn-action" style="width:100%;" type="submit" value="Reinscribir alumno">
+					</a>
+				</div>
+				<br>
 			</article>
 			<!-- /Article -->
 
