@@ -60,7 +60,7 @@ include "../../includes/sessionAlumno.php";
 
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="menuAlumno.html">Regresar</a></li>
+					<li><a href="../menus/menuAlumno.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -91,8 +91,8 @@ include "../../includes/sessionAlumno.php";
 					</tbody>
 				</table>
 			</div> <!-- /row  -->
-			<a href="#" class="btn btn-warning">Descargar en Excel</a>
-
+			
+			<br><br><br><br><br><br><br><br><br><br><br><br>
 		</div>
 	</div>
 	<!-- /Highlights -->

@@ -96,6 +96,7 @@ include "../../includes/sessionMaestro.php";
 
 		</div>
 	</div>	<!-- /container -->
+	<br><br><br><br>
 
 
 	<footer id="footer" class="top-space">

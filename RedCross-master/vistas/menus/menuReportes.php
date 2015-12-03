@@ -40,7 +40,7 @@ include "../../includes/sessionAdmin.php";
 			</div>
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav pull-right">
-					<li><a href="#">Inicio</a></li>
+					<li><a href="../menus/menuAdmin.php">Inicio</a></li>
 					<li class="active"><a class="btn" href="#">Salir</a></li>
 				</ul>
 			</div><!--/.nav-collapse -->

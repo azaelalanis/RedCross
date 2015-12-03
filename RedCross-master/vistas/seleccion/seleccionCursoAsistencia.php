@@ -58,7 +58,7 @@ include "../../includes/sessionMaestro.php";
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Regresar</a></li>
+					<li><a href="../menus/menuMaestro.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -98,8 +98,8 @@ include "../../includes/sessionMaestro.php";
 			<!-- /Article -->
 
 		</div>
+		<br><br><br><br><br><br><br>
 	</div>	<!-- /container -->
-
 
 	<footer id="footer" class="top-space">
 
@@ -137,7 +137,6 @@ include "../../includes/sessionMaestro.php";
 				</div> <!-- /row of widgets -->
 			</div>
 		</div>
-
 		<div class="footer2">
 			<div class="container">
 				<div class="row">

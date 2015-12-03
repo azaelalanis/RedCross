@@ -60,7 +60,7 @@
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav navbar-right">
-					<li><a href="#">Regresar</a></li>
+					<li><a href="../seleccion/seleccionCursoAsistencia.php">Regresar</a></li>
 				</ul>
 			</div>
 		</div>
@@ -141,7 +141,7 @@
 
 			</div>
 		</div>	<!-- /container -->
-
+		<br><br><br><br><br>
 
 		<footer id="footer" class="top-space">
 

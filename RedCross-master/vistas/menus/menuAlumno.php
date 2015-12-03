@@ -89,6 +89,7 @@ include "../../includes/sessionAlumno.php";
 			<!-- /Sidebar -->
 
 		</div>
+		<br><br><br><br><br><br>
 	</div>	<!-- /container -->
 
 
